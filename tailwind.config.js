@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -29,18 +29,19 @@ module.exports = {
         azure: "#3461AC", //border bleue du titre
         biskay: "#1B2C5E", //azure plus foncé
 
-        roman: "#D85962",
+        crimson: "#D9303C",
         midGray: "#636071",
         periglacialBlue: "#DFE5D8",
         snuff: "#DCDBEB",
       },
       fontFamily: {
-        "kregular": ["Kaisei-Regular", "sans-serif"],
-        "kmedium": ["Kaisei-Medium", "sans-serif"],
-        "kextrabold": ["Kaisei-ExtraBold", "sans-serif"],
-        "kbold": ["Kaisei-Bold", "sans-serif"],
-        "preregular": ["Press-Regular", "sans-serif"],
-      }
+        kregular: ["Kaisei-Regular", "sans-serif"],
+        kmedium: ["Kaisei-Medium", "sans-serif"],
+        kextrabold: ["Kaisei-ExtraBold", "sans-serif"],
+        kbold: ["Kaisei-Bold", "sans-serif"],
+        pregular: ["Press-Regular", "sans-serif"],
+        sregular: ["Shojumaru-Regular", "sans-serif"],
+      },
     },
   },
   plugins: [],

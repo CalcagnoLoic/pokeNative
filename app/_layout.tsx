@@ -5,7 +5,9 @@ import { FontLoader } from "@/lib/fontLoader";
 export default function RootLayout() {
   return (
     <FontLoader>
-      <Stack />
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
     </FontLoader>
   );
 }
