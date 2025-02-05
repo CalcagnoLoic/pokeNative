@@ -35,7 +35,7 @@ export default function Index() {
 
             <CustomButton
               title="Your Pokémon quest is about to begin!"
-              handlePress={() => router.push("/")}
+              handlePress={() => router.push("/home")}
               containerStyles="mt-8 text-biskay"
               buttonStyle="border-2 p-7 rounded-lg bg-periglacialBlue"
             />

@@ -1,1 +1,6 @@
-export default {};
+import home from "../assets/icons/home.png";
+import search from "../assets/icons/search.png";
+import profile from "../assets/icons/profile.png";
+import berry from "../assets/icons/berry.png";
+
+export default { home, search, profile, berry };
