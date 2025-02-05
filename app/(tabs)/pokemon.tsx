@@ -1,12 +1,8 @@
 import Header from "@/components/Header";
-import SearchInput from "@/components/SearchInput";
-import { useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Search = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
+const Pokemon = () => {
   return (
     <SafeAreaView className="bg-snuff h-full">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -15,13 +11,8 @@ const Search = () => {
 
           <View className="my-14 justify-center px-4">
             <Text className="text-center font-kbold text-2xl underline">
-              Looking for something in particular?
-            </Text>
-
-            <SearchInput initialQuery={searchQuery} onChangeText={setSearchQuery} />
-
-            <Text className="mt-4 font-kregular">
-              Result for: <Text className="italic">{searchQuery}</Text>
+              Here is the complete list of pokemons{" "}
+              <Text className="text-base">(only 151 at the moment)</Text>
             </Text>
           </View>
         </View>
@@ -29,4 +20,4 @@ const Search = () => {
     </SafeAreaView>
   );
 };
-export default Search;
+export default Pokemon;

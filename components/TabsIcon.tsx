@@ -1,12 +1,13 @@
+import { Tabs } from "@/definition";
 import { View, Text, Image } from "react-native";
 
-const TabsIcon = ({ icon, color, title, focused, iconSize }) => {
+const TabsIcon = ({ icon, color, title, focused, iconSize }: Tabs) => {
   return (
     <View className="flex items-center justify-center gap-2">
       <Image
         source={icon}
         resizeMode="contain"
-        className={`self-center ${focused ? "mt-10" : "mt-16"}  z-20 ${iconSize}`}
+        className={`self-center ${focused ? "mt-12" : "mt-16"}  z-20 ${iconSize}`}
         tintColor={color}
       />
       <Text

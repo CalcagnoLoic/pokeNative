@@ -18,17 +18,34 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="pokemon"
         options={{
-          title: "Home",
+          title: "Pokemon",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.home}
+              icon={icons.pokemon}
               color={color}
-              title="Home"
+              title="Pokemon"
               focused={focused}
-              iconSize={` ${focused ? "w-9 h-9" : "w-7 h-7"}`}
+              iconSize={` ${focused ? "w-9 h-9" : "w-7 h-6"}`}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="berry"
+        options={{
+          title: "Berries",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <TabsIcon
+              icon={icons.berry}
+              color={color}
+              title="Berries"
+              focused={focused}
+              iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
             />
           ),
         }}
@@ -50,31 +67,15 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="berry"
+        name="pokedex"
         options={{
-          title: "Berries",
+          title: "Pokedex",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.berry}
+              icon={icons.pokedex}
               color={color}
-              title="Berries"
-              focused={focused}
-              iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabsIcon
-              icon={icons.profile}
-              color={color}
-              title="Profile"
+              title="Pokedex"
               focused={focused}
               iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
             />
