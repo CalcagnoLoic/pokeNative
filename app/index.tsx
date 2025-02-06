@@ -10,7 +10,7 @@ export default function Index() {
   return (
     <SafeAreaView className="h-full bg-snuff">
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="w-full flex flex-col h-full">
+        <View className="w-full flex flex-col h-full mb-14">
           <Header />
 
           <View className="mt-12 justify-center items-center px-8 ">
@@ -20,7 +20,7 @@ export default function Index() {
             <Image
               source={images.homepage}
               resizeMode="contain"
-              className="w-[450px] h-[180px] my-8"
+              className="w-full max-w-[300px] h-[180px] my-8"
             />
             
             <Text className="font-kregular text-center text-biskay">
