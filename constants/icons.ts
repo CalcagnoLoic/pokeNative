@@ -4,6 +4,7 @@ import profile from "../assets/icons/profile.png";
 import berry from "../assets/icons/berry.png";
 import pokemon from "../assets/icons/pokemon.png";
 import pokedex from "../assets/icons/pokedex.png";
+import show from "../assets/icons/show.png";
+import hide from "../assets/icons/hide.png";
 
-
-export default { home, search, profile, berry, pokemon, pokedex };
+export default { home, search, profile, berry, pokemon, pokedex, show, hide };

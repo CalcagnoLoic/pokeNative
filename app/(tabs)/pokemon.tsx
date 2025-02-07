@@ -1,54 +1,46 @@
-import Header from "@/components/Header";
-import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
-  ScrollView,
   Image,
   ActivityIndicator,
   TouchableOpacity,
-  SectionList,
+  FlatList,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { groupByGeneration } from "@/lib/groupBy";
+import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
+import Header from "@/components/Header";
+import icons from "@/constants/icons";
 
 const Pokemon = () => {
   const { data, isLoading } = useGetAllPokemons();
-  const [visibleSection, setVisibleSection] = useState<{
-    [key: string]: boolean;
-  }>({
-    "Generation 1 (1 - 151)": true,
-  });
+  const [visibleSections, setVisibleSections] = useState<string[]>([]);
 
   const sections = groupByGeneration(data);
 
-  const toogleVisibility = (sectionTitle: string) => {
-    setVisibleSection((previousState) => ({
-      ...previousState,
-      [sectionTitle]: !previousState[sectionTitle],
-    }));
-  };
+  const toggleVisibility = useCallback((sectionTitle: string) => {
+    setVisibleSections((prevState) =>
+      prevState.includes(sectionTitle)
+        ? prevState.filter((title) => title !== sectionTitle)
+        : [...prevState, sectionTitle],
+    );
+  }, []);
 
   if (isLoading) return <ActivityIndicator size="large" />;
 
   const RenderItem = ({ item }: { item: any }) => (
     <TouchableOpacity
-      onPress={() => {
-        console.log(`i press pokemon ${item.name}`);
-      }}
+      onPress={() => console.log(`I pressed Pokémon ${item.name}`)}
     >
-      <View className=" mx-5">
+      <View className="mx-5">
         <View className="flex flex-row gap-2 h-28 justify-center">
           <Image
             source={{ uri: item.sprite }}
-            className="w-20 h-20 "
+            className="w-20 h-20"
             resizeMode="contain"
           />
-          <Text
-            className="self-center font-kregular capitalize my-4"
-            numberOfLines={1}
-          >
+          <Text className="top-1/2 absolute font-kregular capitalize my-4">
             {item.name}
           </Text>
         </View>
@@ -56,41 +48,51 @@ const Pokemon = () => {
     </TouchableOpacity>
   );
 
+  const RenderSection = ({ section }: { section: any }) => {
+    const isVisible = visibleSections.includes(section.title);
+    return (
+      <View>
+        <TouchableOpacity onPress={() => toggleVisibility(section.title)}>
+          <View className="bg-periglacialBlue p-4 border border-midGray mx-8 mb-5 rounded-lg flex-row justify-center">
+            <Text className="text-xl font-kbold text-center">
+              {isVisible ? `Hide ${section.title}` : `Show ${section.title}`}
+            </Text>
+            <Image
+              source={isVisible ? icons.hide : icons.show}
+              className="w-5 h-5 self-center"
+            />
+          </View>
+        </TouchableOpacity>
+        {isVisible && (
+          <FlatList
+            data={section.data}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => <RenderItem item={item} />}
+          />
+        )}
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView className="bg-snuff h-full">
-      <SectionList
-        sections={sections}
-        key={2}
-        keyExtractor={(item) => item.name.toString()}
+      <FlatList
+        data={sections}
+        keyExtractor={(section) => section.title}
+        renderItem={({ item }) => <RenderSection section={item} />}
         ListHeaderComponent={
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <View className="w-full flex h-full">
-              <Header />
-
-              <View className="my-14 justify-center px-4">
-                <Text className="text-center font-kbold text-2xl underline">
-                  Here is the complete list of pokemons
-                </Text>
-              </View>
-            </View>
-          </ScrollView>
-        }
-        renderSectionHeader={({ section: { title } }) => (
-          <TouchableOpacity onPress={() => toogleVisibility(title)}>
-            <View className="bg-periglacialBlue py-2 px-4">
-              <Text className="text-xl font-kbold text-center">
-                {visibleSection[title] ? title : `Show ${title}`}
+          <View>
+            <Header />
+            <View className="my-14 justify-center px-4">
+              <Text className="text-center font-kbold text-2xl underline">
+                The complete list of Pokemon
               </Text>
             </View>
-          </TouchableOpacity>
-        )}
-        renderItem={({ item, section }) => {
-          return visibleSection[section.title] ? (
-            <RenderItem item={item} />
-          ) : null;
-        }}
+          </View>
+        }
       />
     </SafeAreaView>
   );
 };
+
 export default Pokemon;

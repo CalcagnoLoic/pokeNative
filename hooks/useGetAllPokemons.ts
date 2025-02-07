@@ -17,7 +17,8 @@ export const useGetAllPokemons = () => {
             index + 1
           }.png`,
         }));
-         setData(pokemonsWithSprites);
+
+        setData(pokemonsWithSprites);
       } catch (error) {
         setError(error);
       } finally {
