@@ -10,8 +10,8 @@ const Header = () => {
         </Text>
       </View>
 
-      <View className="w-20 h-20 rounded-full bg-white absolute top-[115px] left-1/2 -translate-x-1/2 border-2 border-periglacialBlue"></View>
-      <View className="w-8 h-8 rounded-full bg-midGray absolute top-[135px] left-1/2 -translate-x-1/2 "></View>
+      <View className="w-20 h-20 rounded-full bg-white absolute top-[115px] left-1/2 -translate-x-1/2 border-2 border-periglacialBlue z-20"></View>
+      <View className="w-8 h-8 rounded-full bg-midGray absolute top-[135px] left-1/2 -translate-x-1/2 z-30"></View>
     </>
   );
 };

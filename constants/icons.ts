@@ -6,5 +6,18 @@ import pokemon from "../assets/icons/pokemon.png";
 import pokedex from "../assets/icons/pokedex.png";
 import show from "../assets/icons/show.png";
 import hide from "../assets/icons/hide.png";
+import audio from "../assets/icons/audio.png";
+import goBack from "../assets/icons/goBack.png";
 
-export default { home, search, profile, berry, pokemon, pokedex, show, hide };
+export default {
+  home,
+  search,
+  profile,
+  berry,
+  pokemon,
+  pokedex,
+  show,
+  hide,
+  audio,
+  goBack,
+};

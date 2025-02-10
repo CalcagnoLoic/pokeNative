@@ -1,10 +1,32 @@
 import { ImageSourcePropType } from "react-native";
 
+export type typeNature =
+  | "water"
+  | "fire"
+  | "grass"
+  | "ground"
+  | "rock"
+  | "steel"
+  | "ice"
+  | "electric"
+  | "dragon"
+  | "ghost"
+  | "psychic"
+  | "normal"
+  | "fighting"
+  | "poison"
+  | "bug"
+  | "flying"
+  | "dark"
+  | "fairy";
+
 export type Button = {
   title: string;
   handlePress: () => void;
   containerStyles?: string;
   buttonStyle?: string;
+  isPictured?: boolean;
+  alt?: ImageSourcePropType;
 };
 
 export type Tabs = {
@@ -40,6 +62,11 @@ export interface PokemonDetailsAPI {
   stats: Stat[];
   types: Type[];
   past_types: PastType[];
+  abilitiesDetails: {
+    ability: string;
+    effect: string;
+    is_hidden: boolean;
+  }[];
 }
 
 export interface Ability {
@@ -50,7 +77,7 @@ export interface Ability {
 
 export interface Ability2 {
   name: string;
-  url: string;
+  effect: string;
 }
 
 export interface Form {
@@ -382,7 +409,7 @@ export interface Type {
 }
 
 export interface Type2 {
-  name: string;
+  name: string | typeNature;
   url: string;
 }
 
