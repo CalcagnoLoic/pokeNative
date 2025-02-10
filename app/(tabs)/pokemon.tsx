@@ -12,6 +12,7 @@ import { groupByGeneration } from "@/lib/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
 import Header from "@/components/Header";
 import icons from "@/constants/icons";
+import { router } from "expo-router";
 
 const Pokemon = () => {
   const { data, isLoading } = useGetAllPokemons();
@@ -30,9 +31,7 @@ const Pokemon = () => {
   if (isLoading) return <ActivityIndicator size="large" />;
 
   const RenderItem = ({ item }: { item: any }) => (
-    <TouchableOpacity
-      onPress={() => console.log(`I pressed Pokémon ${item.name}`)}
-    >
+    <TouchableOpacity onPress={() => router.push(`/pokemon/${item.name}`)}>
       <View className="mx-5">
         <View className="flex flex-row gap-2 h-28 justify-center">
           <Image
