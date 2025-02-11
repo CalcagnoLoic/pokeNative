@@ -103,6 +103,20 @@ export interface PokemonDetailsAPI {
     effect: string;
     is_hidden: boolean;
   }[];
+  evolutionDetails: {
+    name: string;
+    level: string | number;
+    sprite: ImageSourcePropType;
+    trigger: string;
+    item: string;
+    happiness: string;
+    affection: string;
+    beauty: string;
+    timeOfDay: string;
+    location: string;
+    needRain: boolean;
+    knownMove: string;
+  }[];
 }
 
 interface Ability {

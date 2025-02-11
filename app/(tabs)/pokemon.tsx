@@ -32,14 +32,14 @@ const Pokemon = () => {
 
   const RenderItem = ({ item }: { item: any }) => (
     <TouchableOpacity onPress={() => router.push(`/pokemon/${item.name}`)}>
-      <View className="mx-5">
-        <View className="flex flex-row gap-2 h-28 justify-center">
+      <View className="mx-5" >
+        <View className="flex flex-row gap-2 h-28 justify-center" style={{ overflow: 'visible' }}>
           <Image
             source={{ uri: item.sprite }}
             className="w-20 h-20"
             resizeMode="contain"
           />
-          <Text className="top-1/2 absolute font-kregular capitalize my-4">
+          <Text className="top-1/2 absolute font-kregular capitalize my-4 leading-6">
             {item.name}
           </Text>
         </View>

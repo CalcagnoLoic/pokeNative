@@ -5,6 +5,7 @@ import { PokemonDetailsAPI } from "@/definition";
 export const usePokemonDetails = ({ id }: { id: string }) => {
   const [data, setData] = useState<PokemonDetailsAPI>();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const cachedData = useMemo(() => {
     console.log("useMemo called, cachedData:");
@@ -19,7 +20,12 @@ export const usePokemonDetails = ({ id }: { id: string }) => {
         console.log("API call result");
         setData(res);
       } catch (error) {
-        console.log("oups", error);
+        console.log("Captured error:", error); 
+        setError(
+          error instanceof Error
+            ? error.message
+            : "Une erreur inconnue est survenue.",
+        );
       } finally {
         setLoading(false);
       }
@@ -30,5 +36,5 @@ export const usePokemonDetails = ({ id }: { id: string }) => {
     }
   }, [id, cachedData]); // Relance uniquement si `id` change ou s'il n'y a pas de `cachedData`
 
-  return { data, loading };
+  return { data, loading, error };
 };
