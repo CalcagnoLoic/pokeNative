@@ -180,7 +180,7 @@ interface Sprites {
       front_shiny: ImageSourcePropType;
       front_shiny_female: ImageSourcePropType;
     };
-    official_artwork: {
+    "official_-artwork": {
       front_default: ImageSourcePropType;
       front_shiny: ImageSourcePropType;
     };

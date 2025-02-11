@@ -1,6 +1,4 @@
 export const getEvolutionDetails = (trigger, evolutionDetail) => {
-  console.log(evolutionDetail);
-
   switch (trigger) {
     case "level-up":
       let condition = "Level up ";

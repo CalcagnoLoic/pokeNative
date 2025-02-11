@@ -15,6 +15,7 @@ import { typeColor } from "@/lib/typeColor";
 import { refactorStats } from "@/lib/refactorStats";
 import { getColorStats } from "@/lib/getColorStat";
 import { getEvolutionDetails } from "@/lib/getEvolutionDetails";
+import images from "@/constants/images";
 
 const PokemonDetails = () => {
   const { id } = useLocalSearchParams();
@@ -24,16 +25,36 @@ const PokemonDetails = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 justify-center items-center bg-snuff">
-        <ActivityIndicator size="large" color="blue" />
+      <View className="flex-1 justify-center items-center bg-snuff px-8">
+        <ActivityIndicator size="large" color="red" />
+        <Text className="mt-5 text-xl font-sregular text-biskay text-center">
+          Your data will arrive in a few seconds 😊
+        </Text>
       </View>
     );
   }
 
   if (error) {
     return (
-      <View className="flex-1 justify-center items-center bg-snuff">
-        <Text>{error}</Text>
+      <View className="flex-1 justify-center items-center bg-snuff px-8">
+        <Image
+          source={images.error}
+          resizeMode="contain"
+          className="w-72 h-72"
+        />
+        <Text className="mt-5 text-xl font-sregular text-biskay text-center">
+          There seems to be a problem... but it's not you, it's us!
+        </Text>
+        <Text className="mt-5 text-sm font-kregular text-biskay text-center">
+          Technical detail: {error}
+        </Text>
+
+        <CustomButton
+          title="Go to homepage"
+          handlePress={() => router.push("/")}
+          containerStyles="mt-8 w-full"
+          buttonStyle="p-4 bg-periglacialBlue border rounded-xl"
+        />
       </View>
     );
   }
@@ -52,14 +73,17 @@ const PokemonDetails = () => {
                 isPictured
                 alt={icons.goBack}
               />
-              <Text className="text-center font-kbold text-2xl underline capitalize text-biskay">
-                {data.name}
-              </Text>
+
               <Image
-                source={{ uri: data.sprites.front_default }}
+                source={{
+                  uri: data.sprites.other?.["official-artwork"].front_default,
+                }}
                 className="w-full h-56"
                 resizeMode="contain"
               />
+              <Text className="text-center font-kbold text-lg capitalize text-biskay my-7">
+                {data.name}
+              </Text>
             </View>
 
             <View>
@@ -179,10 +203,15 @@ const PokemonDetails = () => {
               </Text>
               <View>
                 {data.evolutionDetails.map((evolution) => (
-                  <View className="flex-row items-center h-auto" style={{ overflow: 'visible' }}>
+                  <View
+                    className="flex-row items-center h-auto"
+                    style={{ overflow: "visible" }}
+                  >
                     <TouchableOpacity
                       key={evolution.name}
-                      onPress={() => router.push(`/pokemon/${evolution.name}`)}
+                      onPress={() =>
+                        router.replace(`/pokemon/${evolution.name}`)
+                      }
                       className="flex-col items-center"
                     >
                       <Image
@@ -190,13 +219,13 @@ const PokemonDetails = () => {
                         className="w-24 h-24"
                         resizeMode="contain"
                       />
-                      <Text className="font-kmedium capitalize w-24 text-center leading-6">
+                      <Text className="font-kmedium capitalize w-24 text-center leading-6 text-biskay">
                         {evolution.name}
                       </Text>
                     </TouchableOpacity>
 
                     <Text
-                      className="font-kregular flex-1 pl-2 text-center leading-6"
+                      className="font-kregular flex-1 pl-2 text-center leading-6 text-biskay"
                       numberOfLines={5}
                     >
                       {getEvolutionDetails(evolution.trigger, evolution)}
@@ -208,14 +237,66 @@ const PokemonDetails = () => {
 
             <View>
               <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white ">
-                Moves to learned
+                Difference between male and female
               </Text>
+              <View className="flex flex-row justify-around">
+                <View>
+                  <Image
+                    source={{ uri: data.sprites.front_default }}
+                    resizeMode="contain"
+                    className="w-40 h-40"
+                  />
+                  <Text className="text-center font-kmedium text-biskay">
+                    Male
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    source={{
+                      uri: data.sprites.front_female
+                        ? data.sprites.front_female
+                        : data.sprites.front_default,
+                    }}
+                    resizeMode="contain"
+                    className="w-40 h-40"
+                  />
+                  <Text className="text-center font-kmedium text-biskay">
+                    Female
+                  </Text>
+                </View>
+              </View>
             </View>
 
             <View>
               <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white ">
-                Type affinities
+                Difference between Shiny and Unshiny
               </Text>
+              <View className="flex flex-row justify-around">
+                <View>
+                  <Image
+                    source={{ uri: data.sprites.front_default }}
+                    resizeMode="contain"
+                    className="w-40 h-40"
+                  />
+                  <Text className="text-center font-kmedium text-biskay leading-6">
+                    Unshiny
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    source={{
+                      uri: data.sprites.front_shiny
+                        ? data.sprites.front_shiny
+                        : data.sprites.front_default,
+                    }}
+                    resizeMode="contain"
+                    className="w-40 h-40"
+                  />
+                  <Text className="text-center font-kmedium text-biskay leading-6">
+                    Shiny
+                  </Text>
+                </View>
+              </View>
             </View>
 
             <CustomButton
