@@ -5,6 +5,7 @@ import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import CustomButton from "@/components/CustomButton";
 import icons from "@/constants/icons";
 import { typeColor } from "@/lib/typeColor";
+import { refactorStats } from "@/lib/refactorStats";
 
 const PokemonDetails = () => {
   const { id } = useLocalSearchParams();
@@ -15,8 +16,8 @@ const PokemonDetails = () => {
       <>
         <Header />
         <ScrollView>
-          <View className="px-8 bg-snuff z-0 ">
-            <View className="mt-14 justify-center px-4">
+          <View className="px-8 bg-snuff z-0 flex">
+            <View className="mt-14 px-4">
               <CustomButton
                 title="Go back to the list"
                 handlePress={() => router.push("/(tabs)/pokemon")}
@@ -40,14 +41,14 @@ const PokemonDetails = () => {
                   <Text
                     key={index}
                     style={{ backgroundColor: typeColor(type.type.name) }}
-                    className="mr-12 text-center font-kregular text-lg p-4 rounded-xl mb-3 w-full capitalize text-periglacialBlue"
+                    className={`mr-12 text-center font-kbold text-xl p-4 rounded-xl mb-3 w-full capitalize ${type.type.name === "electric" ? "text-midGray" : "text-periglacialBlue"} `}
                   >
                     {type.type.name}
                   </Text>
                 ))}
               </View>
 
-              <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white ">
+              <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white  items-center">
                 General informations
               </Text>
 
@@ -57,9 +58,8 @@ const PokemonDetails = () => {
                     <Text className="font-kextrabold underline text-biskay text-lg">
                       Weight:
                     </Text>
-                    <Text className="font-kregular text-biskay ">
-                      {" "}
-                      {data.weight} lbs
+                    <Text className="font-kregular text-biskay">
+                      {" "}{data.weight} lbs
                     </Text>
                   </View>
                   <View className="flex flex-row h-12">
@@ -67,8 +67,7 @@ const PokemonDetails = () => {
                       Height:
                     </Text>
                     <Text className="font-kregular text-biskay">
-                      {" "}
-                      {data.height} ft
+                    {" "}{data.height} ft
                     </Text>
                   </View>
                 </View>
@@ -96,11 +95,11 @@ const PokemonDetails = () => {
                 </View>
               ))}
 
-              <Text className="font-kmedium pb-2 text-biskay">
+              <Text className="font-kmedium pb-2 text-biskay underline">
                 Held items:{" "}
                 {data.held_items.map((held, index) => (
                   <Text key={index}>
-                    {held.item.name.length ? held.item.name : "Not items"}
+                    {held.item.name.length !== 0 ? held.item.name : "Not items"}
                   </Text>
                 ))}
               </Text>
@@ -113,7 +112,7 @@ const PokemonDetails = () => {
               <Text>Faire des barres de progression</Text>
               {data.stats.map((stat, index) => (
                 <Text key={index}>
-                  {stat.stat.name} - {stat.base_stat}
+                  {refactorStats(stat.stat.name)} - {stat.base_stat}
                 </Text>
               ))}
             </View>

@@ -22,7 +22,5 @@ const typeColors = {
 };
 
 export const typeColor = (typeName: typeNature) => {
-    console.log(typeColors[typeName]);
-    
   return typeColors[typeName] || "";
 };
