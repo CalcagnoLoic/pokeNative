@@ -1,7 +1,8 @@
 import icons from "@/constants/icons";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { Input } from "@/definition";
+import { View, TextInput, TouchableOpacity, Image } from "react-native";
 
-const SearchInput = ({ initialQuery, onChangeText }) => {
+const SearchInput = ({ initialQuery, onChangeText }: Input) => {
   return (
     <View className="bg-periglacialBlue mt-6 px-4 py-2 border border-midGray rounded-lg flex-row items-center">
       <TextInput

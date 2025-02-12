@@ -18,7 +18,8 @@ export type typeNature =
   | "bug"
   | "flying"
   | "dark"
-  | "fairy";
+  | "fairy"
+  | string;
 
 export type typeStat =
   | "hp"
@@ -26,7 +27,8 @@ export type typeStat =
   | "defense"
   | "special-attack"
   | "special-defense"
-  | "speed";
+  | "speed"
+  | string;
 
 export type Button = {
   title: string;
@@ -78,7 +80,7 @@ export interface PokemonDetailsAPI {
     url: string;
   };
   sprites: Sprites;
-  cries: {
+  cries?: {
     latest: string;
     legacy: string;
   };
@@ -98,25 +100,12 @@ export interface PokemonDetailsAPI {
     };
   }[];
   past_types: PastType[];
-  abilitiesDetails: {
+  abilitiesDetails?: {
     ability: string;
     effect: string;
     is_hidden: boolean;
   }[];
-  evolutionDetails: {
-    name: string;
-    level: string | number;
-    sprite: ImageSourcePropType;
-    trigger: string;
-    item: string;
-    happiness: string;
-    affection: string;
-    beauty: string;
-    timeOfDay: string;
-    location: string;
-    needRain: boolean;
-    knownMove: string;
-  }[];
+  evolutionDetails?: EvolutionDetail[];
 }
 
 interface Ability {
@@ -124,7 +113,7 @@ interface Ability {
   slot: number;
   ability: {
     name: string;
-    effect: string;
+    effect?: string;
   };
 }
 
@@ -161,38 +150,38 @@ interface Mfe {
 }
 
 interface Sprites {
-  back_default: ImageSourcePropType;
-  back_female: ImageSourcePropType;
-  back_shiny: ImageSourcePropType;
-  back_shiny_female: ImageSourcePropType;
-  front_default: ImageSourcePropType;
-  front_female: ImageSourcePropType;
-  front_shiny: ImageSourcePropType;
-  front_shiny_female: ImageSourcePropType;
-  other: {
+  back_default: ImageSourcePropType | null | string;
+  back_female: ImageSourcePropType | null | string;
+  back_shiny: ImageSourcePropType | null | string;
+  back_shiny_female: ImageSourcePropType | null | string;
+  front_default: ImageSourcePropType | null | string;
+  front_female: ImageSourcePropType | null | string;
+  front_shiny: ImageSourcePropType | null | string;
+  front_shiny_female: ImageSourcePropType | null | string;
+  other?: {
     dream_world: {
-      front_default: ImageSourcePropType;
-      front_female: ImageSourcePropType;
+      front_default: ImageSourcePropType | null | string;
+      front_female: ImageSourcePropType | null | string;
     };
     home: {
-      front_default: ImageSourcePropType;
-      front_female: ImageSourcePropType;
-      front_shiny: ImageSourcePropType;
-      front_shiny_female: ImageSourcePropType;
+      front_default: ImageSourcePropType | null | string;
+      front_female: ImageSourcePropType | null | string;
+      front_shiny: ImageSourcePropType | null | string;
+      front_shiny_female: ImageSourcePropType | null | string;
     };
-    "official_-artwork": {
-      front_default: ImageSourcePropType;
-      front_shiny: ImageSourcePropType;
+    "official-artwork": {
+      front_default: ImageSourcePropType | null | string;
+      front_shiny?: ImageSourcePropType | null | string;
     };
-    showdown: {
-      back_default: ImageSourcePropType;
-      back_female: ImageSourcePropType;
-      back_shiny: ImageSourcePropType;
-      back_shiny_female: ImageSourcePropType;
-      front_default: ImageSourcePropType;
-      front_female: ImageSourcePropType;
-      front_shiny: ImageSourcePropType;
-      front_shiny_female: ImageSourcePropType;
+    showdown?: {
+      back_default: ImageSourcePropType | null | string;
+      back_female: ImageSourcePropType | null | string;
+      back_shiny: ImageSourcePropType | null | string;
+      back_shiny_female: ImageSourcePropType | null | string;
+      front_default: ImageSourcePropType | null | string;
+      front_female: ImageSourcePropType | null | string;
+      front_shiny: ImageSourcePropType | null | string;
+      front_shiny_female: ImageSourcePropType | null | string;
     };
   };
   versions: {
@@ -209,147 +198,147 @@ interface Sprites {
 
 interface GenerationI {
   "red-blue": {
-    back_default: ImageSourcePropType;
-    back_gray: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_gray: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_gray: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_gray: ImageSourcePropType | null | string;
   };
   yellow: {
-    back_default: ImageSourcePropType;
-    back_gray: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_gray: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_gray: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_gray: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationIi {
   crystal: {
-    back_default: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
   gold: {
-    back_default: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
   silver: {
-    back_default: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationIii {
   emerald: {
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
   "firered-leafgreen": {
-    back_default: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
   "ruby-sapphire": {
-    back_default: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationIv {
   "diamond-pearl": {
-    back_default: ImageSourcePropType;
-    back_female: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    back_shiny_female: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_female: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    back_shiny_female: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
   "heartgold-soulsilver": {
-    back_default: ImageSourcePropType;
-    back_female: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    back_shiny_female: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_female: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    back_shiny_female: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
   platinum: {
-    back_default: ImageSourcePropType;
-    back_female: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    back_shiny_female: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_female: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    back_shiny_female: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationV {
   "black-white": {
     animated: {
-      back_default: ImageSourcePropType;
-      back_female: ImageSourcePropType;
-      back_shiny: ImageSourcePropType;
-      back_shiny_female: ImageSourcePropType;
-      front_default: ImageSourcePropType;
-      front_female: ImageSourcePropType;
-      front_shiny: ImageSourcePropType;
-      front_shiny_female: ImageSourcePropType;
+      back_default: ImageSourcePropType | null | string;
+      back_female: ImageSourcePropType | null | string;
+      back_shiny: ImageSourcePropType | null | string;
+      back_shiny_female: ImageSourcePropType | null | string;
+      front_default: ImageSourcePropType | null | string;
+      front_female: ImageSourcePropType | null | string;
+      front_shiny: ImageSourcePropType | null | string;
+      front_shiny_female: ImageSourcePropType | null | string;
     };
-    back_default: ImageSourcePropType;
-    back_female: ImageSourcePropType;
-    back_shiny: ImageSourcePropType;
-    back_shiny_female: ImageSourcePropType;
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    back_default: ImageSourcePropType | null | string;
+    back_female: ImageSourcePropType | null | string;
+    back_shiny: ImageSourcePropType | null | string;
+    back_shiny_female: ImageSourcePropType | null | string;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationVi {
   "omegaruby-alphasapphire": {
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
   "x-y": {
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationVii {
   icons: {
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
   };
   "ultra-sun-ultra-moon": {
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
-    front_shiny: ImageSourcePropType;
-    front_shiny_female: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
+    front_shiny: ImageSourcePropType | null | string;
+    front_shiny_female: ImageSourcePropType | null | string;
   };
 }
 
 interface GenerationViii {
   icons: {
-    front_default: ImageSourcePropType;
-    front_female: ImageSourcePropType;
+    front_default: ImageSourcePropType | null | string;
+    front_female: ImageSourcePropType | null | string;
   };
 }
 
@@ -365,4 +354,24 @@ interface PastType {
       url: string;
     };
   }[];
+}
+
+export type EvolutionDetail = {
+  name: string;
+  level: string | number;
+  sprite: string;
+  trigger: string;
+  item: string;
+  happiness: number;
+  affection: number;
+  beauty: number;
+  timeOfDay: string;
+  location: string;
+  needsRain: boolean;
+  knownMove: string;
+};
+
+export type Input = {
+  initialQuery: string
+  onChangeText: (newValue: string) => void
 }

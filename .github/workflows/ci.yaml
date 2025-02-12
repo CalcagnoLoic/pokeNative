@@ -1,0 +1,31 @@
+name: "Linting and testing (CI)"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    lint_and_test:
+        runs-on: ubutun-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+
+          - name: Install Node
+            uses: actions/setup-node@v4
+            with: 
+                node-version: "22"
+                cache: "npm"
+
+          - name: Install dependancies
+            run: npm ci
+
+          - name: Linter 
+            run: npm run lint
+
+          - name: Verification TypeScript
+            run: npm run ts
+
+          - name: Testing
+            uses: npm run test
