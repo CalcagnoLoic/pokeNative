@@ -1,21 +1,18 @@
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import Header from "@/components/Header";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import CustomButton from "@/components/CustomButton";
 import icons from "@/constants/icons";
-import { typeColor } from "@/lib/typeColor";
-import { refactorStats } from "@/lib/refactorStats";
-import { getColorStats } from "@/lib/getColorStat";
-import { getEvolutionDetails } from "@/lib/getEvolutionDetails";
+import { typeColor } from "@/utils/typeColor";
+import { refactorStats } from "@/utils/refactorStats";
+import { getColorStats } from "@/utils/getColorStat";
+import { getEvolutionDetails } from "@/utils/getEvolutionDetails";
 import images from "@/constants/images";
+import LoadingState from "@/components/LoadingState";
+import EmptyState from "@/components/EmptyState";
+import SpriteSection from "@/components/SpriteSection";
+import { PlaySound } from "@/utils/playSound";
 
 const PokemonDetails = () => {
   const { id } = useLocalSearchParams();
@@ -23,41 +20,9 @@ const PokemonDetails = () => {
     id: Array.isArray(id) ? id[0] : id,
   });
 
-  if (loading) {
-    return (
-      <View className="flex-1 justify-center items-center bg-snuff px-8">
-        <ActivityIndicator size="large" color="red" />
-        <Text className="mt-5 text-xl font-sregular text-biskay text-center">
-          Your data will arrive in a few seconds 😊
-        </Text>
-      </View>
-    );
-  }
+  if (loading) return <LoadingState />;
 
-  if (error) {
-    return (
-      <View className="flex-1 justify-center items-center bg-snuff px-8">
-        <Image
-          source={images.error}
-          resizeMode="contain"
-          className="w-72 h-72"
-        />
-        <Text className="mt-5 text-xl font-sregular text-biskay text-center">
-          There seems to be a problem... but it's not you, it's us!
-        </Text>
-        <Text className="mt-5 text-sm font-kregular text-biskay text-center">
-          Technical detail: {error}
-        </Text>
-
-        <CustomButton
-          title="Go to homepage"
-          handlePress={() => router.push("/")}
-          containerStyles="mt-8 w-full"
-          buttonStyle="p-4 bg-periglacialBlue border rounded-xl"
-        />
-      </View>
-    );
-  }
+  if (error) return <EmptyState error={error} />;
 
   return (
     data && (
@@ -65,27 +30,12 @@ const PokemonDetails = () => {
         <Header />
         <ScrollView>
           <View className="px-8 bg-snuff z-0 flex">
-            <View className="mt-14 px-4">
-              <CustomButton
-                title="Go back to the list"
-                handlePress={() => router.push("/(tabs)/pokemon")}
-                buttonStyle="bg-periglacialBlue p-4 rounded-lg border mb-8"
-                isPictured
-                alt={icons.goBack}
-              />
-
-              <Image
-                source={{
-                  uri: data.sprites.other?.["official-artwork"]
-                    .front_default as string,
-                }}
-                className="w-full h-56"
-                resizeMode="contain"
-              />
-              <Text className="text-center font-kbold text-lg capitalize text-biskay my-7">
-                {data.name}
-              </Text>
-            </View>
+            <SpriteSection
+              name={data.name}
+              spriteUri={
+                data.sprites.other?.["official-artwork"].front_default as string
+              }
+            />
 
             <View>
               <View className="flex flex-1">
@@ -130,7 +80,7 @@ const PokemonDetails = () => {
                   </View>
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => PlaySound({uriSound: data.cries?.latest })}>
                   <Image
                     source={icons.audio}
                     resizeMode="contain"

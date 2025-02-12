@@ -1,21 +1,16 @@
 import React, { useState, useCallback } from "react";
-import {
-  View,
-  Text,
-  Image,
-  ActivityIndicator,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { groupByGeneration } from "@/lib/groupBy";
+import { groupByGeneration } from "@/utils/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
 import Header from "@/components/Header";
 import icons from "@/constants/icons";
 import { router } from "expo-router";
+import LoadingState from "@/components/LoadingState";
+import EmptyState from "@/components/EmptyState";
 
 const Pokemon = () => {
-  const { data, isLoading } = useGetAllPokemons();
+  const { data, isLoading, error } = useGetAllPokemons();
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
 
   const sections = groupByGeneration(data);
@@ -28,12 +23,17 @@ const Pokemon = () => {
     );
   }, []);
 
-  if (isLoading) return <ActivityIndicator size="large" />;
+  if (isLoading) return <LoadingState />;
+
+  if (error) return <EmptyState error={error} />;
 
   const RenderItem = ({ item }: { item: any }) => (
     <TouchableOpacity onPress={() => router.push(`/pokemon/${item.name}`)}>
-      <View className="mx-5" >
-        <View className="flex flex-row gap-2 h-28 justify-center" style={{ overflow: 'visible' }}>
+      <View className="mx-5">
+        <View
+          className="flex flex-row gap-2 h-28 justify-center"
+          style={{ overflow: "visible" }}
+        >
           <Image
             source={{ uri: item.sprite }}
             className="w-20 h-20"
@@ -89,6 +89,7 @@ const Pokemon = () => {
             </View>
           </View>
         }
+        ListEmptyComponent={<EmptyState error={error} />}
       />
     </SafeAreaView>
   );
