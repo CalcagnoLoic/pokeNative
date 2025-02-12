@@ -4,14 +4,15 @@ import Header from "@/components/Header";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import CustomButton from "@/components/CustomButton";
 import icons from "@/constants/icons";
-import { typeColor } from "@/lib/typeColor";
-import { refactorStats } from "@/lib/refactorStats";
-import { getColorStats } from "@/lib/getColorStat";
-import { getEvolutionDetails } from "@/lib/getEvolutionDetails";
+import { typeColor } from "@/utils/typeColor";
+import { refactorStats } from "@/utils/refactorStats";
+import { getColorStats } from "@/utils/getColorStat";
+import { getEvolutionDetails } from "@/utils/getEvolutionDetails";
 import images from "@/constants/images";
 import LoadingState from "@/components/LoadingState";
 import EmptyState from "@/components/EmptyState";
 import SpriteSection from "@/components/SpriteSection";
+import { PlaySound } from "@/utils/playSound";
 
 const PokemonDetails = () => {
   const { id } = useLocalSearchParams();
@@ -79,7 +80,7 @@ const PokemonDetails = () => {
                   </View>
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => PlaySound({uriSound: data.cries?.latest })}>
                   <Image
                     source={icons.audio}
                     resizeMode="contain"

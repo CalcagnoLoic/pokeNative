@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { groupByGeneration } from "@/lib/groupBy";
+import { groupByGeneration } from "@/utils/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
 import Header from "@/components/Header";
 import icons from "@/constants/icons";
