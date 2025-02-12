@@ -372,6 +372,11 @@ export type EvolutionDetail = {
 };
 
 export type Input = {
-  initialQuery: string
-  onChangeText: (newValue: string) => void
-}
+  initialQuery: string;
+  onChangeText: (newValue: string) => void;
+};
+
+export type SpriteType = {
+  name: string;
+  spriteUri: string;
+};
