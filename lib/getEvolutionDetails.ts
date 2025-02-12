@@ -1,4 +1,4 @@
-export const getEvolutionDetails = (trigger, evolutionDetail) => {
+export const getEvolutionDetails = (trigger: string, evolutionDetail: any) => {
   switch (trigger) {
     case "level-up":
       let condition = "Level up ";
@@ -6,21 +6,21 @@ export const getEvolutionDetails = (trigger, evolutionDetail) => {
       if (evolutionDetail.level && evolutionDetail.level !== " ")
         condition += `at level ${evolutionDetail.level}`;
       if (evolutionDetail.happiness > 0)
-        condition += ` with a happiness level of ${evolutionDetail.happiness}`;
+        condition += `with a happiness level of ${evolutionDetail.happiness}`;
 
       if (evolutionDetail.affection > 0)
-        condition += ` with an affection level of ${evolutionDetail.affection}`;
+        condition += `with an affection level of ${evolutionDetail.affection}`;
 
       if (evolutionDetail.beauty > 0)
-        condition += ` with a beauty level of ${evolutionDetail.beauty}`;
+        condition += `with a beauty level of ${evolutionDetail.beauty}`;
       if (evolutionDetail.timeOfDay && evolutionDetail.timeOfDay.trim() !== "")
-        condition += ` during the ${evolutionDetail.timeOfDay}`;
+        condition += `during the ${evolutionDetail.timeOfDay}`;
       if (evolutionDetail.location && evolutionDetail.location.trim() !== "")
-        condition += ` at a specific location: ${evolutionDetail.location}`;
+        condition += `at a specific location: ${evolutionDetail.location}`;
       if (evolutionDetail.needsRain !== undefined)
-        condition += evolutionDetail.needsRain ? " at rainy day" : "";
+        condition += evolutionDetail.needsRain ? "at rainy day" : "";
       if (evolutionDetail.knownMove && evolutionDetail.knownMove.trim() !== "")
-        condition += ` if ${evolutionDetail.knownMove} is known`;
+        condition += `if ${evolutionDetail.knownMove} is known`;
 
       return condition;
 

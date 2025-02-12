@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export const useGetAllPokemons = () => {
   const [data, setData] = useState<{ name: string; sprite: string }[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null | unknown>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -19,8 +19,12 @@ export const useGetAllPokemons = () => {
         }));
 
         setData(pokemonsWithSprites);
-      } catch (error) {
-        setError(error);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error);
+        } else {
+          setError(new Error("Une erreur inconnue est survenue"));
+        }
       } finally {
         setIsLoading(false);
       }

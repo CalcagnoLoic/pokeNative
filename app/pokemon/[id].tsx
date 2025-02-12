@@ -76,7 +76,8 @@ const PokemonDetails = () => {
 
               <Image
                 source={{
-                  uri: data.sprites.other?.["official-artwork"].front_default,
+                  uri: data.sprites.other?.["official-artwork"]
+                    .front_default as string,
                 }}
                 className="w-full h-56"
                 resizeMode="contain"
@@ -91,7 +92,11 @@ const PokemonDetails = () => {
                 {data.types.map((type) => (
                   <Text
                     key={type.type.name}
-                    style={{ backgroundColor: typeColor(type.type.name) }}
+                    style={{
+                      backgroundColor: typeColor(
+                        type.type.name as keyof typeof typeColor,
+                      ),
+                    }}
                     className={`mr-12 text-center font-kbold text-xl p-4 rounded-xl mb-3 w-full capitalize ${type.type.name === "electric" ? "text-midGray" : "text-periglacialBlue"} `}
                   >
                     {type.type.name}
@@ -137,16 +142,17 @@ const PokemonDetails = () => {
               <Text className="pb-2 font-kextrabold underline h-8 text-biskay text-lg">
                 Ability:{" "}
               </Text>
-              {data.abilitiesDetails.map((ability, index) => (
-                <View key={ability.ability}>
-                  <Text className="flex-col underline font-kextrabold h-6 capitalize text-biskay">
-                    {index + 1}. {ability.ability}:
-                  </Text>
-                  <Text className="font-kregular mb-4 text-biskay">
-                    {ability.effect ? ability.effect : "No effect available"}
-                  </Text>
-                </View>
-              ))}
+              {data.abilitiesDetails &&
+                data.abilitiesDetails.map((ability, index) => (
+                  <View key={ability.ability}>
+                    <Text className="flex-col underline font-kextrabold h-6 capitalize text-biskay">
+                      {index + 1}. {ability.ability}:
+                    </Text>
+                    <Text className="font-kregular mb-4 text-biskay">
+                      {ability.effect ? ability.effect : "No effect available"}
+                    </Text>
+                  </View>
+                ))}
 
               <Text className="font-kmedium pb-2 text-biskay underline">
                 Held items:{" "}
@@ -180,7 +186,10 @@ const PokemonDetails = () => {
                   return (
                     <View>
                       <Text className="font-kregular text-center text-lg mb-2 mt-5">
-                        {refactorStats(stat.stat.name)}: {stat.base_stat}
+                        {refactorStats(
+                          stat.stat.name as keyof typeof refactorStats,
+                        )}
+                        : {stat.base_stat}
                       </Text>
                       <View className="bg-periglacialBlue h-8 w-full rounded-xl">
                         <View
@@ -202,36 +211,37 @@ const PokemonDetails = () => {
                 Evolution Chain
               </Text>
               <View>
-                {data.evolutionDetails.map((evolution) => (
-                  <View
-                    className="flex-row items-center h-auto"
-                    style={{ overflow: "visible" }}
-                  >
-                    <TouchableOpacity
-                      key={evolution.name}
-                      onPress={() =>
-                        router.replace(`/pokemon/${evolution.name}`)
-                      }
-                      className="flex-col items-center"
+                {data.evolutionDetails &&
+                  data.evolutionDetails.map((evolution) => (
+                    <View
+                      className="flex-row items-center h-auto"
+                      style={{ overflow: "visible" }}
                     >
-                      <Image
-                        source={{ uri: evolution.sprite }}
-                        className="w-24 h-24"
-                        resizeMode="contain"
-                      />
-                      <Text className="font-kmedium capitalize w-24 text-center leading-6 text-biskay">
-                        {evolution.name}
-                      </Text>
-                    </TouchableOpacity>
+                      <TouchableOpacity
+                        key={evolution.name}
+                        onPress={() =>
+                          router.replace(`/pokemon/${evolution.name}`)
+                        }
+                        className="flex-col items-center"
+                      >
+                        <Image
+                          source={{ uri: evolution.sprite }}
+                          className="w-24 h-24"
+                          resizeMode="contain"
+                        />
+                        <Text className="font-kmedium capitalize w-28 text-center leading-6 text-biskay">
+                          {evolution.name}
+                        </Text>
+                      </TouchableOpacity>
 
-                    <Text
-                      className="font-kregular flex-1 pl-2 text-center leading-6 text-biskay"
-                      numberOfLines={5}
-                    >
-                      {getEvolutionDetails(evolution.trigger, evolution)}
-                    </Text>
-                  </View>
-                ))}
+                      <Text
+                        className="font-kregular flex-1 pl-2 text-center leading-6 text-biskay"
+                        numberOfLines={5}
+                      >
+                        {getEvolutionDetails(evolution.trigger, evolution)}
+                      </Text>
+                    </View>
+                  ))}
               </View>
             </View>
 
@@ -242,7 +252,7 @@ const PokemonDetails = () => {
               <View className="flex flex-row justify-around">
                 <View>
                   <Image
-                    source={{ uri: data.sprites.front_default }}
+                    source={{ uri: data.sprites.front_default as string }}
                     resizeMode="contain"
                     className="w-40 h-40"
                   />
@@ -253,9 +263,8 @@ const PokemonDetails = () => {
                 <View>
                   <Image
                     source={{
-                      uri: data.sprites.front_female
-                        ? data.sprites.front_female
-                        : data.sprites.front_default,
+                      uri: (data.sprites.front_female ||
+                        data.sprites.front_default) as string,
                     }}
                     resizeMode="contain"
                     className="w-40 h-40"
@@ -274,7 +283,7 @@ const PokemonDetails = () => {
               <View className="flex flex-row justify-around">
                 <View>
                   <Image
-                    source={{ uri: data.sprites.front_default }}
+                    source={{ uri: data.sprites.front_default as string }}
                     resizeMode="contain"
                     className="w-40 h-40"
                   />
@@ -285,9 +294,8 @@ const PokemonDetails = () => {
                 <View>
                   <Image
                     source={{
-                      uri: data.sprites.front_shiny
-                        ? data.sprites.front_shiny
-                        : data.sprites.front_default,
+                      uri: (data.sprites.front_shiny ||
+                        data.sprites.front_default) as string,
                     }}
                     resizeMode="contain"
                     className="w-40 h-40"

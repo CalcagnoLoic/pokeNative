@@ -1,5 +1,3 @@
-import { typeNature } from "@/definition";
-
 const typeColors = {
   water: "#579DD9",
   fire:  "#FDA054",
@@ -21,6 +19,6 @@ const typeColors = {
   fairy: "#EE8FE5",
 };
 
-export const typeColor = (typeName: typeNature) => {
+export const typeColor = (typeName: keyof typeof typeColors) => {
   return typeColors[typeName] || "";
 };

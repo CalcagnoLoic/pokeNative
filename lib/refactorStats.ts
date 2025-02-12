@@ -1,5 +1,3 @@
-import { typeStat } from "@/definition";
-
 const typeStats = {
   hp: "Hit Point",
   attack: "Attack",
@@ -9,6 +7,6 @@ const typeStats = {
   speed: "Speed",
 };
 
-export const refactorStats = (statName: typeStat) => {
+export const refactorStats = (statName: keyof typeof typeStats) => {
   return typeStats[statName] || null;
 };

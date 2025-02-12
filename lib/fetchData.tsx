@@ -1,3 +1,4 @@
+import { EvolutionDetail } from "@/definition";
 import { PokemonClient } from "pokenode-ts";
 
 const api = new PokemonClient();
@@ -40,7 +41,10 @@ export const getDetailsPokemons = async (pokemonName: string) => {
     const evolutionData = await evolutionResponse.json();
 
     // Fonction pour obtenir le sprite et les informations de chaque étape d'évolution
-    const getEvolutionDetails = async (chain: any, evolutionDetails = []) => {
+    const getEvolutionDetails = async (
+      chain: any,
+      evolutionDetails: EvolutionDetail[] = [],
+    ) => {
       let currentChain = chain;
 
       // Tant qu'il y a une évolution à traiter
