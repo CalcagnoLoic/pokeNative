@@ -92,13 +92,7 @@ export interface PokemonDetailsAPI {
       url: string;
     };
   }[];
-  types: {
-    slot: number;
-    type: {
-      name: typeNature;
-      url: string;
-    };
-  }[];
+  types: TypesPokemon[];
   past_types: PastType[];
   abilitiesDetails?: {
     ability: string;
@@ -106,6 +100,14 @@ export interface PokemonDetailsAPI {
     is_hidden: boolean;
   }[];
   evolutionDetails?: EvolutionDetail[];
+}
+
+export interface TypesPokemon {
+  slot: number;
+  type: {
+    name: typeNature;
+    url: string;
+  };
 }
 
 interface Ability {
@@ -380,3 +382,15 @@ export type SpriteType = {
   name: string;
   spriteUri: string;
 };
+
+export type OtherSprite = {
+  title: string;
+  sprite1: string;
+  sprite2: string;
+  label1: string;
+  label2: string;
+};
+
+export type Types = {
+  types: TypesPokemon[]
+}

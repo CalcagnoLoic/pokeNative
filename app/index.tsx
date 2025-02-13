@@ -14,7 +14,7 @@ export default function Index() {
           <Header />
 
           <View className="mt-12 justify-center items-center px-8 ">
-            <Text className="text-4xl font-kbold text-biskay mt-12 text-center">
+            <Text className="text-4xl font-mBold text-biskay mt-12 text-center">
               Welcome on PokeNative !
             </Text>
             <Image
