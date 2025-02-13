@@ -4,7 +4,7 @@ import { TouchableOpacity, View, Image, Text } from "react-native";
 const RenderItem = ({ item }: { item: any }) => (
   <TouchableOpacity
     onPress={() => router.push(`/pokemon/${item.name}`)}
-    className="flex flex-col justify-center p-2"
+    className="block mx-auto p-2"
   >
     <View className="border justify-center rounded-xl p-2">
       <Image

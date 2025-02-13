@@ -4,7 +4,6 @@ import { router, useLocalSearchParams } from "expo-router";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import CustomButton from "@/components/CustomButton";
 import icons from "@/constants/icons";
-import { typeColor } from "@/utils/typeColor";
 import { refactorStats } from "@/utils/refactorStats";
 import { getColorStats } from "@/utils/getColorStat";
 import { getEvolutionDetails } from "@/utils/getEvolutionDetails";

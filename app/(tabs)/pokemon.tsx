@@ -24,8 +24,14 @@ const Pokemon = () => {
     );
   }, []);
 
+  const toggleClear = () => {
+    setSelected([]);
+    setVisibleSections([]);
+  };
+
   const toggleFiltering = () => {
     setIsFiltering((prevValue) => !prevValue);
+    
   };
 
   const toggleSelection = (generationTitle: string) => {
@@ -49,14 +55,14 @@ const Pokemon = () => {
 
   return (
     <SafeAreaView className="bg-snuff h-full">
-      <View>
+      <View className="border-b">
         <View className="px-8 pt-10 flex justify-between flex-row mb-4">
           <Text className="font-mExtrabold text-lg self-center">
             PokeNative
           </Text>
           <TouchableOpacity onPress={toggleFiltering}>
             <Image
-              source={icons.filter}
+              source={isFiltering ? icons.closeFilter : icons.filter}
               className="w-10 h-10"
               resizeMode="contain"
             />
@@ -79,7 +85,10 @@ const Pokemon = () => {
                 </TouchableOpacity>
               ))}
             </View>
-            <TouchableOpacity className="w-1/2 block mx-auto">
+            <TouchableOpacity
+              className="w-1/2 block mx-auto"
+              onPress={toggleClear}
+            >
               <TextBox title="Clear All" />
             </TouchableOpacity>
           </View>

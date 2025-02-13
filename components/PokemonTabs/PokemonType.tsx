@@ -1,25 +1,40 @@
+import typeIcons from "@/constants/typeIcons";
 import { Types } from "@/definition";
 import { typeColor } from "@/utils/typeColor";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 
 const PokemonType = ({ types }: Types) => {
   return (
-    <View className="flex flex-row gap-5">
-      {types.map((type: any) => (
-        <Text
-          key={type.type.name}
-          style={{
-            backgroundColor: typeColor(
-              type.type.name as keyof typeof typeColor,
-            ),
-          }}
-          className={`px-6 py-3 capitalize w-1/2 rounded-xl text-center border ${type.type.name === "electric" ? "text-midGray" : "text-periglacialBlue"} `}
-        >
-          {type.type.name}
-        </Text>
-      ))}
+    <View className="gap-5 flex-row mx-auto">
+      {types.map((type: any) => {
+        const typeName = type.type.name as keyof typeof typeIcons;
+
+        if (!typeIcons[typeName]) {
+          return null; 
+        }
+
+        return (
+          <View
+            key={typeName}
+            style={{
+              backgroundColor: typeColor(typeName),
+            }}
+            className={`px-6 py-3 flex-row items-center justify-center rounded-xl border ${
+              typeName === "electric" ? "text-midGray" : "text-periglacialBlue"
+            }`}
+          >
+            <Image
+              source={typeIcons[typeName]}
+              className="w-5 h-5 mr-2"
+              resizeMode="contain"
+            />
+            <Text className="capitalize">{typeName}</Text>
+          </View>
+        );
+      })}
     </View>
   );
 };
+
 
 export default PokemonType;

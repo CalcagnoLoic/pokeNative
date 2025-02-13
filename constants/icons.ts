@@ -9,6 +9,7 @@ import hide from "../assets/icons/hide.png";
 import audio from "../assets/icons/audio.png";
 import goBack from "../assets/icons/goBack.png";
 import filter from "../assets/icons/filter.png";
+import closeFilter from "../assets/icons/closeFilter.jpg";
 
 export default {
   home,
@@ -21,5 +22,6 @@ export default {
   hide,
   audio,
   goBack,
-  filter
+  filter,
+  closeFilter,
 };
