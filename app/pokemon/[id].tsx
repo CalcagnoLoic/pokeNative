@@ -11,10 +11,10 @@ import { getEvolutionDetails } from "@/utils/getEvolutionDetails";
 
 import LoadingState from "@/components/LoadingState";
 import EmptyState from "@/components/EmptyState";
-import SpriteSection from "@/components/SpriteSection";
+import SpriteSection from "@/components/PokemonTabs/SpriteSection";
 import { PlaySound } from "@/utils/playSound";
-import OtherSpritesSection from "@/components/OtherSpritesSection";
-import PokemonType from "@/components/PokemonType";
+import OtherSpritesSection from "@/components/PokemonTabs/OtherSpritesSection";
+import PokemonType from "@/components/PokemonTabs/PokemonType";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const PokemonDetails = () => {
@@ -29,7 +29,7 @@ const PokemonDetails = () => {
 
   return (
     data && (
-      <SafeAreaView >
+      <SafeAreaView>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View className=" bg-snuff  flex">
             <View className="px-12 mt-5">

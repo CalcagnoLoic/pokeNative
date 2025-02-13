@@ -394,3 +394,9 @@ export type OtherSprite = {
 export type Types = {
   types: TypesPokemon[]
 }
+
+export type RenderingSectionPokemons = {
+  section: any;
+  visibleSections: string[];
+  toggleVisibility: (newValue: string) => void;
+};

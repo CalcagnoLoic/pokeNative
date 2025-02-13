@@ -3,17 +3,18 @@ import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { groupByGeneration } from "@/utils/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
-import Header from "@/components/Header";
 import icons from "@/constants/icons";
-import { router } from "expo-router";
 import LoadingState from "@/components/LoadingState";
 import EmptyState from "@/components/EmptyState";
+import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
+import RenderSection from "@/components/PokemonTabs/RenderSection";
+import TextBox from "@/components/TextBox";
 
 const Pokemon = () => {
   const { data, isLoading, error } = useGetAllPokemons();
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-
-  const sections = groupByGeneration(data);
+  const [isFiltering, setIsFiltering] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const toggleVisibility = useCallback((sectionTitle: string) => {
     setVisibleSections((prevState) =>
@@ -23,72 +24,77 @@ const Pokemon = () => {
     );
   }, []);
 
+  const toggleFiltering = () => {
+    setIsFiltering((prevValue) => !prevValue);
+  };
+
+  const toggleSelection = (generationTitle: string) => {
+    setSelected(
+      (prevState) =>
+        prevState.includes(generationTitle)
+          ? prevState.filter((title) => title !== generationTitle) // Désélectionner
+          : [...prevState, generationTitle], // Sélectionner
+    );
+  };
+
+  const filteredSection = selected.length
+    ? groupByGeneration(data).filter((section) =>
+        selected.includes(section.title),
+      )
+    : groupByGeneration(data);
+
   if (isLoading) return <LoadingState />;
 
   if (error) return <EmptyState error={error} />;
 
-  const RenderItem = ({ item }: { item: any }) => (
-    <TouchableOpacity onPress={() => router.push(`/pokemon/${item.name}`)}>
-      <View className="mx-5">
-        <View
-          className="flex flex-row gap-2 h-28 justify-center"
-          style={{ overflow: "visible" }}
-        >
-          <Image
-            source={{ uri: item.sprite }}
-            className="w-20 h-20"
-            resizeMode="contain"
-          />
-          <Text className="top-1/2 absolute font-kregular capitalize my-4 leading-6">
-            {item.name}
-          </Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-
-  const RenderSection = ({ section }: { section: any }) => {
-    const isVisible = visibleSections.includes(section.title);
-    return (
-      <View>
-        <TouchableOpacity onPress={() => toggleVisibility(section.title)}>
-          <View className="bg-periglacialBlue p-4 border border-midGray mx-8 mb-5 rounded-lg flex-row justify-center">
-            <Text className="text-xl font-kbold text-center">
-              {isVisible ? `Hide ${section.title}` : `Show ${section.title}`}
-            </Text>
-            <Image
-              source={isVisible ? icons.hide : icons.show}
-              className="w-5 h-5 self-center"
-            />
-          </View>
-        </TouchableOpacity>
-        {isVisible && (
-          <FlatList
-            data={section.data}
-            keyExtractor={(item) => item.name}
-            renderItem={({ item }) => <RenderItem item={item} />}
-          />
-        )}
-      </View>
-    );
-  };
-
   return (
     <SafeAreaView className="bg-snuff h-full">
-      <FlatList
-        data={sections}
-        keyExtractor={(section) => section.title}
-        renderItem={({ item }) => <RenderSection section={item} />}
-        ListHeaderComponent={
-          <View>
-            <Header />
-            <View className="my-14 justify-center px-4">
-              <Text className="text-center font-kbold text-2xl underline">
-                The complete list of Pokemon
-              </Text>
+      <View>
+        <View className="px-8 pt-10 flex justify-between flex-row mb-4">
+          <Text className="font-mExtrabold text-lg self-center">
+            PokeNative
+          </Text>
+          <TouchableOpacity onPress={toggleFiltering}>
+            <Image
+              source={icons.filter}
+              className="w-10 h-10"
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+        {isFiltering && (
+          <View className="px-8">
+            <View className="flex flex-row flex-wrap justify-center gap-5 mb-5 px-8">
+              {groupByGeneration(data).map((title) => (
+                <TouchableOpacity
+                  key={title.title}
+                  onPress={() => toggleSelection(title.title)}
+                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border ${selected.includes(title.title) ? "bg-biskay border-periglacialBluebord" : "bg-periglacialBlue er-biskay"}`}
+                >
+                  <Text
+                    className={`font-rBoldi ${selected.includes(title.title) ? "text-periglacialBlue" : "text-biskay"}`}
+                  >
+                    {convertIntoGeneration(title.title)}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
+            <TouchableOpacity className="w-1/2 block mx-auto">
+              <TextBox title="Clear All" />
+            </TouchableOpacity>
           </View>
-        }
+        )}
+      </View>
+      <FlatList
+        data={filteredSection}
+        keyExtractor={(section) => section.title}
+        renderItem={({ item }) => (
+          <RenderSection
+            section={item}
+            visibleSections={visibleSections}
+            toggleVisibility={toggleVisibility}
+          />
+        )}
         ListEmptyComponent={<EmptyState error={error} />}
       />
     </SafeAreaView>
