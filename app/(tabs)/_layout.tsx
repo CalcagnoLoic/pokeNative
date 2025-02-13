@@ -67,15 +67,15 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="pokedex"
+        name="items"
         options={{
-          title: "Pokedex",
+          title: "Items",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
               icon={icons.pokedex}
               color={color}
-              title="Pokedex"
+              title="Items"
               focused={focused}
               iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
             />

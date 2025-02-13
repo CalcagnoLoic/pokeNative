@@ -11,7 +11,7 @@ const TabsIcon = ({ icon, color, title, focused, iconSize }: Tabs) => {
         tintColor={color}
       />
       <Text
-        className={`text-center w-full  text-snuff z-20 ${focused ? "font-kbold text-base" : "font-kregular text-sm"}`}
+        className={`text-center w-full  text-snuff z-20 ${focused ? "font-rBold text-base" : "font-rRegular text-sm"}`}
       >
         {title}
       </Text>
