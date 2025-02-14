@@ -24,7 +24,6 @@ module.exports = {
         scarpaFlow: "#5A5266", //Type ténèbre
         lavenderMagenta: "#ED90E7", //Type féé
 
-        supernova: "#FFCB05", //jaune intense du titre
         lucky: "#BA9D1E", //jaune plus foncé
         azure: "#3461AC", //border bleue du titre
         biskay: "#1B2C5E", //azure plus foncé
@@ -33,6 +32,13 @@ module.exports = {
         midGray: "#636071",
         periglacialBlue: "#DFE5D8",
         snuff: "#DCDBEB",
+        
+        //palette harmonieuse
+        zircon: "#F0F4FF", //background général
+        macaroniAndCheese: "#FFBE76", //boutons secondaire, filtre sélectionné
+        geyser: "#D6DDE5", //filtre déselectionné
+        riverBed: "#4A5568", //titre important
+        tropicalBlue: "#BED9F9"
       },
       fontFamily: {
         mBold: ["Montserrat-Bold", "sans-serif"],

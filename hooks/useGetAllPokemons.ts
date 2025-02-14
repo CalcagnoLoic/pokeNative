@@ -1,4 +1,4 @@
-import { getAllPokemons } from "@/lib/fetchData";
+import { getAllPokemons, getPokemonTypesMap } from "@/lib/fetchData";
 import { useEffect, useState } from "react";
 
 export const useGetAllPokemons = () => {
@@ -10,15 +10,21 @@ export const useGetAllPokemons = () => {
     const fetchAllPokemons = async () => {
       try {
         setIsLoading(true);
-        const response = await getAllPokemons();
-        const pokemonsWithSprites = response.results.map((pokemon, index) => ({
-          name: pokemon.name,
-          sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-            index + 1
-          }.png`,
-        }));
 
-        setData(pokemonsWithSprites);
+        const response = await getAllPokemons();
+        const pokemonTypesMap = await getPokemonTypesMap();
+
+        const pokemonsWithSpritesAndTypes = response.results.map(
+          (pokemon, index) => ({
+            name: pokemon.name,
+            sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+              index + 1
+            }.png`,
+            types: pokemonTypesMap.get(pokemon.name) || [],
+          }),
+        );
+
+        setData(pokemonsWithSpritesAndTypes);
       } catch (error: unknown) {
         if (error instanceof Error) {
           setError(error);

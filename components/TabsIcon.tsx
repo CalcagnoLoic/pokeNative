@@ -17,7 +17,7 @@ const TabsIcon = ({ icon, color, title, focused, iconSize }: Tabs) => {
       </Text>
 
       {focused && (
-        <View className="w-20 h-20 rounded-full bg-biskay z-10 -top-1 absolute border-t-2 border-t-periglacialBlue"></View>
+        <View className="w-20 h-20 rounded-full bg-biskay z-10 -top-1 absolute border-none"></View>
       )}
     </View>
   );

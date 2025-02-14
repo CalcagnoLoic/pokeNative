@@ -7,10 +7,10 @@ const EmptyState = ({ error }: { error: string | null | unknown }) => {
   return (
     <View className="flex-1 justify-center items-center bg-snuff px-8">
       <Image source={images.error} resizeMode="contain" className="w-72 h-72" />
-      <Text className="mt-5 text-xl font-sregular text-biskay text-center">
+      <Text className="mt-5 text-xl font-mExtrabold text-biskay text-center">
         There seems to be a problem... but it's not you, it's us!
       </Text>
-      <Text className="mt-5 text-sm font-kregular text-biskay text-center">
+      <Text className="mt-5 text-sm font-rRegular text-biskay text-center">
         Technical detail: {error as string}
       </Text>
 
