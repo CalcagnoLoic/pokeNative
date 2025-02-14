@@ -8,6 +8,25 @@ export const getAllPokemons = async () => {
   return pokemons;
 };
 
+export const getPokemonTypesMap = async () => {
+  const allTypes = await Promise.all(
+    Array.from({ length: 18 }, (_, index) => api.getTypeById(index + 1)),
+  );
+
+  const pokemonTypeMap = new Map<string, string[]>();
+
+  allTypes.forEach((type) => {
+    type.pokemon.forEach((p) => {
+      const name = p.pokemon.name;
+      if (!pokemonTypeMap.has(name)) pokemonTypeMap.set(name, []);
+
+      pokemonTypeMap.get(name)?.push(type.name);
+    });
+  });
+
+  return pokemonTypeMap;
+};
+
 export const getDetailsPokemons = async (pokemonName: string) => {
   try {
     const pokemon = await api.getPokemonByName(pokemonName);

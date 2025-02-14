@@ -5,26 +5,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        havelockBlue: "#579DD9", //Type eau
-        tanHide: "#FDA054", //Type feu
-        fern: "#60BB5B", //Type plante
-        rawSienna: "#D77E4E", //Type sol
-        yuma: "#CBBD8E", //Type roche
-        wedgehood: "#53899F", //Type acier
-        downy: "#76CEC0", //Type glace
-        energyYellow: "#F6D751", //Type électrique
-        scienceBlue: "#086DBE", //Type dragon
-        blueViolet: "#616DBC", //Type spectre
-        froly: "#F87278", //Type psy
-        regentGray: "#929AA2", //Type normal
-        cabaret: "#D24064", //Type combat
-        amethyst: "#A865CA", //Type poison
-        atlantis: "#93C12B", //Type insecte
-        dullLavender: "#92ACE1", //Type vol
-        scarpaFlow: "#5E5769", //Type ténèbre
-        lavenderMagenta: "#EE8FE5", //Type féé
+        havelockBlue: "#4C91D6", //Type eau
+        tanHide: "#FF9D53", //Type feu
+        fern: "#63BC5B", //Type plante
+        rawSienna: "#DA7844", //Type sol
+        yuma: "#C8B88C", //Type roche
+        wedgehood: "#5A8FA2", //Type acier
+        downy: "#75CFC1", //Type glace
+        energyYellow: "#F3D338", //Type électrique
+        scienceBlue: "#036DC5", //Type dragon
+        blueViolet: "#5169AE", //Type spectre
+        froly: "#F97277", //Type psy
+        regentGray: "#919AA2", //Type normal
+        cabaret: "#CF3E69", //Type combat
+        amethyst: "#AC6AC9", //Type poison
+        atlantis: "#91C228", //Type insecte
+        dullLavender: "#90AADE", //Type vol
+        scarpaFlow: "#5A5266", //Type ténèbre
+        lavenderMagenta: "#ED90E7", //Type féé
 
-        supernova: "#FFCB05", //jaune intense du titre
         lucky: "#BA9D1E", //jaune plus foncé
         azure: "#3461AC", //border bleue du titre
         biskay: "#1B2C5E", //azure plus foncé
@@ -33,6 +32,13 @@ module.exports = {
         midGray: "#636071",
         periglacialBlue: "#DFE5D8",
         snuff: "#DCDBEB",
+        
+        //palette harmonieuse
+        zircon: "#F0F4FF", //background général
+        macaroniAndCheese: "#FFBE76", //boutons secondaire, filtre sélectionné
+        geyser: "#D6DDE5", //filtre déselectionné
+        riverBed: "#4A5568", //titre important
+        tropicalBlue: "#BED9F9"
       },
       fontFamily: {
         mBold: ["Montserrat-Bold", "sans-serif"],
@@ -47,7 +53,6 @@ module.exports = {
         rItalic: ["Roboto-Italic", "sans-serif"],
         rMedium: ["Roboto-Medium", "sans-serif"],
         rRegular: ["Roboto-Regular", "sans-serif"],
-        
       },
     },
   },

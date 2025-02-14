@@ -12,8 +12,8 @@ const RenderSection = ({
   return (
     <View className="mt-5">
       <TouchableOpacity onPress={() => toggleVisibility(section.title)}>
-        <View className="bg-periglacialBlue p-4 border border-midGray mx-8 mb-5 rounded-lg flex-row justify-center ">
-          <Text className="text-xl font-kbold text-center">
+        <View className="bg-tropicalBlue p-4 border border-riverBed  mx-8 mb-5 rounded-lg flex-row justify-center">
+          <Text className="text-lg font-mItalic text-center text-biskay mr-3">
             {isVisible ? `Hide ${section.title}` : `Show ${section.title}`}
           </Text>
           <Image

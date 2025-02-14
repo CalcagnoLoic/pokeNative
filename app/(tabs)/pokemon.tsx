@@ -31,7 +31,6 @@ const Pokemon = () => {
 
   const toggleFiltering = () => {
     setIsFiltering((prevValue) => !prevValue);
-    
   };
 
   const toggleSelection = (generationTitle: string) => {
@@ -54,10 +53,10 @@ const Pokemon = () => {
   if (error) return <EmptyState error={error} />;
 
   return (
-    <SafeAreaView className="bg-snuff h-full">
+    <SafeAreaView className="bg-zircon h-full">
       <View className="border-b">
         <View className="px-8 pt-10 flex justify-between flex-row mb-4">
-          <Text className="font-mExtrabold text-lg self-center">
+          <Text className="font-mExtrabold text-lg self-center text-riverBed">
             PokeNative
           </Text>
           <TouchableOpacity onPress={toggleFiltering}>
@@ -75,11 +74,9 @@ const Pokemon = () => {
                 <TouchableOpacity
                   key={title.title}
                   onPress={() => toggleSelection(title.title)}
-                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border ${selected.includes(title.title) ? "bg-biskay border-periglacialBluebord" : "bg-periglacialBlue er-biskay"}`}
+                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border text-biskay border-riverBed ${selected.includes(title.title) ? "bg-macaroniAndCheese " : "bg-geyser"}`}
                 >
-                  <Text
-                    className={`font-rBoldi ${selected.includes(title.title) ? "text-periglacialBlue" : "text-biskay"}`}
-                  >
+                  <Text className={`font-rBoldi text-biskay`}>
                     {convertIntoGeneration(title.title)}
                   </Text>
                 </TouchableOpacity>
@@ -89,7 +86,10 @@ const Pokemon = () => {
               className="w-1/2 block mx-auto"
               onPress={toggleClear}
             >
-              <TextBox title="Clear All" />
+              <TextBox
+                title="Clear All"
+                style="border bg-macaroniAndCheese text-biskay"
+              />
             </TouchableOpacity>
           </View>
         )}
