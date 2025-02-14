@@ -3,8 +3,7 @@ import { SpriteType } from "@/definition";
 
 const SpriteSection = ({ name, spriteUri }: SpriteType) => {
   return (
-    <View className="mt-14 px-4">
-
+    <View className="mb-3 mt-6">
       <Image
         source={{
           uri: spriteUri,
@@ -12,7 +11,7 @@ const SpriteSection = ({ name, spriteUri }: SpriteType) => {
         className="w-full h-56"
         resizeMode="contain"
       />
-      <Text className="text-center font-kbold text-lg capitalize text-biskay my-7">
+      <Text className="text-center font-mExtrabold text-xl capitalize text-biskay mt-5">
         {name}
       </Text>
     </View>
