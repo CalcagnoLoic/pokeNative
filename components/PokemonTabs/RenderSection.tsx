@@ -10,7 +10,7 @@ const RenderSection = ({
 }: RenderingSectionPokemons) => {
   const isVisible = visibleSections.includes(section.title);
   return (
-    <View className="mt-5">
+    <View className="mt-5 relative z-20">
       <TouchableOpacity onPress={() => toggleVisibility(section.title)}>
         <View className="bg-tropicalBlue p-4 border border-riverBed  mx-8 mb-5 rounded-lg flex-row justify-center">
           <Text className="text-lg font-mItalic text-center text-biskay mr-3">

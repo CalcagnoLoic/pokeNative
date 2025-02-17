@@ -33,7 +33,6 @@ const TabsLayout = () => {
           ),
         }}
       />
-
       <Tabs.Screen
         name="berry"
         options={{
@@ -44,6 +43,22 @@ const TabsLayout = () => {
               icon={icons.berry}
               color={color}
               title="Berries"
+              focused={focused}
+              iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
+            />
+          ),
+        }}
+      />{" "}
+      <Tabs.Screen
+        name="items"
+        options={{
+          title: "Items",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <TabsIcon
+              icon={icons.pokedex}
+              color={color}
+              title="Items"
               focused={focused}
               iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
             />
@@ -60,22 +75,6 @@ const TabsLayout = () => {
               icon={icons.search}
               color={color}
               title="Search"
-              focused={focused}
-              iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="items"
-        options={{
-          title: "Items",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabsIcon
-              icon={icons.pokedex}
-              color={color}
-              title="Items"
               focused={focused}
               iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
             />

@@ -1,7 +1,8 @@
 import { typeColor } from "@/utils/typeColor";
 import { router } from "expo-router";
-import { TouchableOpacity, Image, Text } from "react-native";
+import { TouchableOpacity, Image, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import icons from "@/constants/icons";
 
 const RenderItem = ({ item }: { item: any }) => (
   <TouchableOpacity
@@ -18,16 +19,22 @@ const RenderItem = ({ item }: { item: any }) => (
       style={{
         borderRadius: 10,
         padding: 8,
-        flex: 1,
         aspectRatio: 1,
         paddingHorizontal: 8,
       }}
     >
-      <Image
-        source={{ uri: item.sprite }}
-        className="w-20 h-20 self-center p-3"
-        resizeMode="contain"
-      />
+      <View className="relative">
+        <Image
+          source={icons.ballBackground}
+          className="w-14 h-14 -translate-x-[50%] -translate-y-[50%] absolute top-[50%] left-[50%]"
+          resizeMode="contain"
+        />
+        <Image
+          source={{ uri: item.sprite }}
+          className="w-20 h-20 self-center p-3"
+          resizeMode="contain"
+        />
+      </View>
       <Text
         className="font-rRegular capitalize self-center text-white"
         numberOfLines={1}

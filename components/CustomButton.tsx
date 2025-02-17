@@ -15,7 +15,7 @@ const CustomButton = ({
         {isPictured && (
           <Image source={alt} resizeMode="contain" className="w-5 h-5" />
         )}
-        <Text className="text-lg text-center text-biskay font-rMedium">
+        <Text className="text-center text-biskay font-rRegular">
           {title}
         </Text>
       </View>

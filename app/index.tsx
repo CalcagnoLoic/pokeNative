@@ -23,7 +23,7 @@ export default function Index() {
               className="w-full max-w-[300px] h-[180px] my-8"
             />
             
-            <Text className="font-rRegular text-center text-biskay">
+            <Text className="font-rRegular text-center text-biskay text-xl">
               Here you can find information about your favorite pokémons 😊
             </Text>
 
