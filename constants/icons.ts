@@ -11,6 +11,9 @@ import goBack from "../assets/icons/goBack.png";
 import filter from "../assets/icons/filter.png";
 import closeFilter from "../assets/icons/closeFilter.jpg";
 import ballBackground from "../assets/icons/ballBackground.png";
+import back from "../assets/icons/back.jpg";
+import poids from "../assets/icons/poids.png";
+import taille from "../assets/icons/taille.png";
 
 export default {
   home,
@@ -25,5 +28,8 @@ export default {
   goBack,
   filter,
   closeFilter,
-  ballBackground
+  ballBackground,
+  back,
+  poids,
+  taille,
 };

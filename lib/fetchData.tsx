@@ -54,6 +54,9 @@ export const getDetailsPokemons = async (pokemonName: string) => {
     const speciesResponse = await fetch(pokemon.species.url);
     const speciesData = await speciesResponse.json();
     const evolutionChainUrl = speciesData.evolution_chain.url;
+    const flavorTextSpecies = speciesData.flavor_text_entries.find(
+      (entryText: any) => entryText.language.name === "en",
+    ).flavor_text;
 
     // Faire un appel pour récupérer les détails de la chaîne d'évolution
     const evolutionResponse = await fetch(evolutionChainUrl);
@@ -103,6 +106,7 @@ export const getDetailsPokemons = async (pokemonName: string) => {
             needsRain:
               currentChain.evolution_details[0]?.needs_overworld_rain || false,
             knownMove: currentChain.evolution_details[0]?.known_move || " ",
+            flavorText: flavorTextSpecies,
           };
 
           evolutionDetails.push(evolutionDetailsItem);

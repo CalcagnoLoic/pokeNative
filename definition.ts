@@ -371,6 +371,7 @@ export type EvolutionDetail = {
   location: string;
   needsRain: boolean;
   knownMove: string;
+  flavorText: string
 };
 
 export type Input = {

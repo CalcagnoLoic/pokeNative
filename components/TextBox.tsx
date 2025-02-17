@@ -1,8 +1,11 @@
 import { Text } from "react-native";
 
-const TextBox = ({ title, style }: { title: string; style?: string }) => {
+const TextBox = ({ title }: { title: string }) => {
   return (
-    <Text className={`text-center p-3  my-3 rounded-xl ${style}`}>
+    <Text
+      className="p-3 font-mExtrabold text-white rounded-3xl text-center"
+      style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+    >
       {title}
     </Text>
   );
