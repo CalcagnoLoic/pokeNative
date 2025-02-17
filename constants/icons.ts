@@ -10,6 +10,7 @@ import audio from "../assets/icons/audio.png";
 import goBack from "../assets/icons/goBack.png";
 import filter from "../assets/icons/filter.png";
 import closeFilter from "../assets/icons/closeFilter.jpg";
+import ballBackground from "../assets/icons/ballBackground.png";
 
 export default {
   home,
@@ -24,4 +25,5 @@ export default {
   goBack,
   filter,
   closeFilter,
+  ballBackground
 };

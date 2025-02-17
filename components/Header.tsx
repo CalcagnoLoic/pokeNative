@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <>
       <View className="bg-crimson h-[150px]  justify-center items-center border-b-2 border-b-periglacialBlue">
-        <Text className="text-3xl font-mRegular  color-supernova">
+        <Text className="text-4xl font-mRegular color-supernova text-white">
           PokeNative
         </Text>
       </View>

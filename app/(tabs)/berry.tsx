@@ -1,22 +1,22 @@
-import Header from "@/components/Header";
-import { View, Text, ScrollView } from "react-native";
+import Background from "@/components/Background";
+import icons from "@/constants/icons";
+import { View, Text,  StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Berry = () => {
   return (
-    <SafeAreaView className="bg-snuff h-full">
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="w-full flex flex-col h-full">
-          <Header />
+    <SafeAreaView className="bg-zircon h-full">
+      <Background img={icons.berry} otherStyle="grayscale" />
+      <View className="border-b relative z-10 bg-zircon">
+        <View className="px-8 pt-4 flex justify-between flex-row mb-4">
+          <Text className="font-mExtrabold text-lg self-center text-riverBed">
+            PokeNative
+          </Text>
 
-          <View className="my-14 justify-center px-4">
-            <Text className="text-center font-kbold text-2xl underline">
-              Here is the complete list of berries available in the different
-              generations
-            </Text>
-          </View>
+
         </View>
-      </ScrollView>
+      </View>
+      <StatusBar backgroundColor="#F0F4FF" barStyle={"dark-content"} />
     </SafeAreaView>
   );
 };
