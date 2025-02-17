@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  StatusBar,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { groupByGeneration } from "@/utils/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
@@ -9,6 +16,7 @@ import EmptyState from "@/components/EmptyState";
 import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
 import RenderSection from "@/components/PokemonTabs/RenderSection";
 import TextBox from "@/components/TextBox";
+import Background from "@/components/Background";
 
 const Pokemon = () => {
   const { data, isLoading, error } = useGetAllPokemons();
@@ -54,8 +62,10 @@ const Pokemon = () => {
 
   return (
     <SafeAreaView className="bg-zircon h-full">
-      <View className="border-b">
-        <View className="px-8 pt-10 flex justify-between flex-row mb-4">
+      <Background img={icons.pokemon} />
+
+      <View className="border-b relative z-10 bg-zircon">
+        <View className="px-8 pt-4 flex justify-between flex-row mb-4">
           <Text className="font-mExtrabold text-lg self-center text-riverBed">
             PokeNative
           </Text>
@@ -66,15 +76,21 @@ const Pokemon = () => {
               resizeMode="contain"
             />
           </TouchableOpacity>
+          <StatusBar backgroundColor="#F0F4FF" barStyle={"dark-content"} />
         </View>
+
         {isFiltering && (
-          <View className="px-8">
+          <View className="px-8 relative z-20">
             <View className="flex flex-row flex-wrap justify-center gap-5 mb-5 px-8">
               {groupByGeneration(data).map((title) => (
                 <TouchableOpacity
                   key={title.title}
                   onPress={() => toggleSelection(title.title)}
-                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border text-biskay border-riverBed ${selected.includes(title.title) ? "bg-macaroniAndCheese " : "bg-geyser"}`}
+                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border text-biskay border-riverBed ${
+                    selected.includes(title.title)
+                      ? "bg-macaroniAndCheese "
+                      : "bg-geyser"
+                  }`}
                 >
                   <Text className={`font-rBoldi text-biskay`}>
                     {convertIntoGeneration(title.title)}
@@ -94,6 +110,7 @@ const Pokemon = () => {
           </View>
         )}
       </View>
+
       <FlatList
         data={filteredSection}
         keyExtractor={(section) => section.title}
