@@ -5,6 +5,7 @@ import { Tabs } from "expo-router";
 const Layout = () => {
   return (
     <Tabs
+     initialRouteName="pokemon"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#FFCB05",
