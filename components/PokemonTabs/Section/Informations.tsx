@@ -37,7 +37,7 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
 
       {/* <PlayerAudio data={data} /> */}
 
-      {/* <View className="flex flex-row justify-between">
+{/*       <View className="flex flex-row justify-between">
         <TouchableOpacity
           onPress={() => PlaySound({ uriSound: data.cries?.latest })}
         >

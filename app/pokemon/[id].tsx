@@ -1,23 +1,17 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
-
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
-import CustomButton from "@/components/CustomButton";
-import icons from "@/constants/icons";
-import { refactorStats } from "@/utils/refactorStats";
-import { getColorStats } from "@/utils/getColorStat";
-import { getEvolutionDetails } from "@/utils/getEvolutionDetails";
-
-import LoadingState from "@/components/LoadingState";
-import EmptyState from "@/components/EmptyState";
-import SpriteSection from "@/components/PokemonTabs/SpriteSection";
-import { PlaySound } from "@/utils/playSound";
-import OtherSpritesSection from "@/components/PokemonTabs/OtherSpritesSection";
-import PokemonType from "@/components/PokemonTabs/PokemonType";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { typeColor } from "@/utils/typeColor";
-import Informations from "@/components/PokemonTabs/Section/Informations";
+import { useState } from "react";
+import { renderContent } from "@/lib/renderContent";
+
+import icons from "@/constants/icons";
+import LoadingState from "@/components/LoadingState";
+import EmptyState from "@/components/EmptyState";
+import SpriteSection from "@/components/PokemonTabs/SpriteSection";
+import PokemonType from "@/components/PokemonTabs/PokemonType";
 
 const PokemonDetails = () => {
   const { id } = useLocalSearchParams();
@@ -25,15 +19,20 @@ const PokemonDetails = () => {
     id: Array.isArray(id) ? id[0] : id,
   });
 
+  const [selectedTabs, setSelectedTabs] = useState<string>("Infos");
+
+  const isElectricType =
+    data && data.types.some((type) => type.type.name === "electric");
+
   if (loading) return <LoadingState />;
 
   if (error) return <EmptyState error={error} />;
 
   return (
     data && (
-      <SafeAreaView>
+      <SafeAreaView className="flex-1">
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          <View className=" bg-zircon  ">
+          <View className="bg-zircon flex-1">
             <View className="p-5">
               <TouchableOpacity onPress={() => router.push("/pokemon")}>
                 <Image
@@ -71,114 +70,33 @@ const PokemonDetails = () => {
                 borderTopLeftRadius: 32,
                 borderTopRightRadius: 32,
                 backgroundColor: "transparent",
+                flex: 1,
+                minHeight: "100%",
               }}
             >
-              <Informations data={data} />
-
-{/*               <View>
-                <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white ">
-                  Statistics
-                </Text>
-                {(() => {
-                  const maxOtherStat = Math.max(
-                    ...data.stats
-                      .filter((stat) => stat.stat.name !== "hp")
-                      .map((stat) => stat.base_stat),
-                  );
-
-                  return data.stats.map((stat) => {
-                    let percentage = 100;
-                    const isHP = stat.stat.name === "hp";
-
-                    if (stat.stat.name !== "hp") {
-                      percentage = (stat.base_stat / maxOtherStat) * 100;
-                    }
-
-                    return (
-                      <View>
-                        <Text className="font-kregular text-center text-lg mb-2 mt-5">
-                          {refactorStats(
-                            stat.stat.name as keyof typeof refactorStats,
-                          )}
-                          : {stat.base_stat}
-                        </Text>
-                        <View className="bg-periglacialBlue h-8 w-full rounded-xl">
-                          <View
-                            className="h-8 rounded-xl"
-                            style={{
-                              width: `${percentage}%`,
-                              backgroundColor: `${getColorStats(percentage, isHP)}`,
-                            }}
-                          ></View>
-                        </View>
-                      </View>
-                    );
-                  });
-                })()}
+              <View
+                className="flex flex-row justify-between items-center px-8 mb-5 rounded-t-[32px] p-5"
+                style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
+              >
+                {["Infos", "Evolution", "Stats", "Form"].map((tab, index) => (
+                  <TouchableOpacity
+                    onPress={() => setSelectedTabs(tab)}
+                    key={index}
+                  >
+                    <Text
+                      className={`font-mRegular ${
+                        selectedTabs === tab ? "text-xl border-b" : ""
+                      } ${isElectricType ? "text-midGray border-b-midGray" : "text-white border-b-white"}`}
+                    >
+                      {tab}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </View>
 
-              <View>
-                <Text className="mt-7 text-center font-pregular mb-4 px-2 py-3 bg-azure rounded-xl text-white ">
-                  Evolution Chain
-                </Text>
-                <View>
-                  {data.evolutionDetails &&
-                    data.evolutionDetails.map((evolution) => (
-                      <View
-                        className="flex-row items-center h-auto"
-                        style={{ overflow: "visible" }}
-                      >
-                        <TouchableOpacity
-                          key={evolution.name}
-                          onPress={() =>
-                            router.replace(`/pokemon/${evolution.name}`)
-                          }
-                          className="flex-col items-center"
-                        >
-                          <Image
-                            source={{ uri: evolution.sprite }}
-                            className="w-24 h-24"
-                            resizeMode="contain"
-                          />
-                          <Text className="font-kmedium capitalize w-28 text-center leading-6 text-biskay">
-                            {evolution.name}
-                          </Text>
-                        </TouchableOpacity>
-
-                        <Text
-                          className="font-kregular flex-1 pl-2 text-center leading-6 text-biskay"
-                          numberOfLines={5}
-                        >
-                          {getEvolutionDetails(evolution.trigger, evolution)}
-                        </Text>
-                      </View>
-                    ))}
-                </View>
+              <View className="flex-1">
+                {renderContent({ state: selectedTabs, data })}
               </View>
-
-              <OtherSpritesSection
-                title="Difference between male and female"
-                sprite1={data.sprites.front_default as string}
-                label1="Male"
-                sprite2={
-                  (data.sprites.front_female ||
-                    data.sprites.front_default) as string
-                }
-                label2="Female"
-              />
-
-              <OtherSpritesSection
-                title="Difference between Shiny and Unshiny"
-                sprite1={data.sprites.front_default as string}
-                label1="Unshiny"
-                sprite2={
-                  (data.sprites.front_shiny ||
-                    data.sprites.front_default) as string
-                }
-                label2="Shiny"
-              />
-
- */}
             </LinearGradient>
           </View>
         </ScrollView>
