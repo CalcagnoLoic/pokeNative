@@ -1,7 +1,8 @@
-import { TouchableOpacity, View, Text, Image, FlatList } from "react-native";
-import RenderItem from "./RenderItem";
-import icons from "@/constants/icons";
 import { RenderingSectionPokemons } from "@/definition";
+import { TouchableOpacity, View, Text, Image, FlatList } from "react-native";
+
+import icons from "@/constants/ICONS";
+import RenderItem from "./RenderItem";
 
 const RenderSection = ({
   section,

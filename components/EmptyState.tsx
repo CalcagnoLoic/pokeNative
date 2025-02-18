@@ -1,7 +1,8 @@
-import images from "@/constants/images";
-import { View, Image, Text } from "react-native";
-import CustomButton from "./CustomButton";
 import { router } from "expo-router";
+import { View, Image, Text } from "react-native";
+
+import CustomButton from "./CustomButton";
+import images from "@/constants/IMAGES";
 
 const EmptyState = ({ error }: { error: string | null | unknown }) => {
   return (

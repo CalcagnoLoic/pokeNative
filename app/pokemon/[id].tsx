@@ -1,4 +1,11 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,7 +14,7 @@ import { typeColor } from "@/utils/typeColor";
 import { useState } from "react";
 import { renderContent } from "@/lib/renderContent";
 
-import icons from "@/constants/icons";
+import icons from "@/constants/ICONS";
 import LoadingState from "@/components/LoadingState";
 import EmptyState from "@/components/EmptyState";
 import SpriteSection from "@/components/PokemonTabs/SpriteSection";
@@ -20,9 +27,6 @@ const PokemonDetails = () => {
   });
 
   const [selectedTabs, setSelectedTabs] = useState<string>("Infos");
-
-  const isElectricType =
-    data && data.types.some((type) => type.type.name === "electric");
 
   if (loading) return <LoadingState />;
 
@@ -50,6 +54,7 @@ const PokemonDetails = () => {
                     data.sprites.other?.["official-artwork"]
                       .front_default as string
                   }
+                  cries={data.cries?.latest as string}
                 />
               </View>
             </View>
@@ -79,18 +84,17 @@ const PokemonDetails = () => {
                 style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
               >
                 {["Infos", "Evolution", "Stats", "Form"].map((tab, index) => (
-                  <TouchableOpacity
-                    onPress={() => setSelectedTabs(tab)}
-                    key={index}
-                  >
+                  <Pressable onPress={() => setSelectedTabs(tab)} key={index}>
                     <Text
-                      className={`font-mRegular ${
-                        selectedTabs === tab ? "text-xl border-b" : ""
-                      } ${isElectricType ? "text-midGray border-b-midGray" : "text-white border-b-white"}`}
+                      className={` text-white ${
+                        selectedTabs === tab
+                          ? "text-xl font-mBold "
+                          : " font-mRegular"
+                      } `}
                     >
                       {tab}
                     </Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 ))}
               </View>
 

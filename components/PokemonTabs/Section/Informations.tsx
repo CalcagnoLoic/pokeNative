@@ -1,10 +1,9 @@
-import TextBox from "@/components/TextBox";
-import icons from "@/constants/icons";
-import { PokemonDetailsAPI } from "@/definition";
-import { PlaySound } from "@/utils/playSound";
-import { useEffect, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import PlayerAudio from "../PlayerAudio";
+import { PokemonDetailsAPI } from "@/definition";
+import { useEffect, useState } from "react";
+
+import icons from "@/constants/ICONS";
+import TextBox from "@/components/TextBox";
 
 const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
   const isElectricType = data.types.some(
@@ -34,20 +33,6 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
           ? `"${data.evolutionDetails[0].flavorText.replace(/\n/g, " ")}"`
           : "No flavor text avalaible"}
       </Text>
-
-      {/* <PlayerAudio data={data} /> */}
-
-{/*       <View className="flex flex-row justify-between">
-        <TouchableOpacity
-          onPress={() => PlaySound({ uriSound: data.cries?.latest })}
-        >
-          <Image
-            source={icons.audio}
-            resizeMode="contain"
-            className="w-20 h-20 ml-12"
-          />
-        </TouchableOpacity>
-      </View> */}
 
       <View
         className="flex-row p-3 justify-around rounded-3xl mt-5"
@@ -125,13 +110,27 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
       <View className="mt-5">
         <TextBox title="Held items" />
 
-        <Text className="font-kmedium pb-2 text-biskay underline">
-          {data.held_items.map((held) => (
-            <Text key={held.item.name}>
-              {held.item.name === "" ? held.item.name : "No items held"}
+        <View
+          className={`font-rRegular flex flex-row justify-center my-4 gap-7`}
+        >
+          {data.held_items.length > 0 ? (
+            data.held_items.map((held) => (
+              <Text
+                key={held.item.name}
+                className="capitalize px-4 py-2 rounded-3xl text-white"
+                style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
+              >
+                {held.item.name.replace("-", " ")}
+              </Text>
+            ))
+          ) : (
+            <Text
+              className={`px-4 py-2 ${isElectricType ? "text-midGray" : "text-white"}`}
+            >
+              No items held
             </Text>
-          ))}
-        </Text>
+          )}
+        </View>
       </View>
     </View>
   );

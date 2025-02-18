@@ -1,5 +1,6 @@
 import { OtherSprite } from "@/definition";
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
+
 import TextBox from "../TextBox";
 
 const OtherSpritesSection = ({
@@ -8,14 +9,9 @@ const OtherSpritesSection = ({
   sprite2,
   label1,
   label2,
-  types,
 }: OtherSprite) => {
-  const isElectricType = types?.some(
-    (pokeType: any) => pokeType.type.name === "electric",
-  );
-
   return (
-    <View>
+    <View className="rounded-3xl" style={{backgroundColor: "rgba(0,0,0,0.55)"}}>
       <TextBox title={title} />
 
       <View className="flex flex-row justify-around">
@@ -25,11 +21,11 @@ const OtherSpritesSection = ({
             resizeMode="contain"
             className="w-40 h-40"
           />
-          <Text
-            className={`text-center font-rRegular ${isElectricType ? "text-midGray" : "text-white"}`}
-          >
-            {label1}
-          </Text>
+          <Image
+            source={label1}
+            resizeMode="contain"
+            className="w-5 h-5 block mx-auto mb-5"
+          />
         </View>
 
         <View>
@@ -38,11 +34,11 @@ const OtherSpritesSection = ({
             resizeMode="contain"
             className="w-40 h-40"
           />
-          <Text
-            className={`text-center font-rRegular ${isElectricType ? "text-midGray" : "text-white"}`}
-          >
-            {label2}
-          </Text>
+          <Image
+            source={label2}
+            resizeMode="contain"
+            className="w-5 h-5 block mx-auto"
+          />
         </View>
       </View>
     </View>

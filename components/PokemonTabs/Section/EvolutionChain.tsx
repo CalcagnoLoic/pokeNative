@@ -1,8 +1,9 @@
-import icons from "@/constants/icons";
-import { PokemonDetailsAPI } from "@/definition";
 import { getEvolutionDetails } from "@/utils/getEvolutionDetails";
+import { PokemonDetailsAPI } from "@/definition";
 import { router } from "expo-router";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+
+import icons from "@/constants/ICONS";
 
 const EvolutionChain = ({ data }: { data: PokemonDetailsAPI }) => {
   return (

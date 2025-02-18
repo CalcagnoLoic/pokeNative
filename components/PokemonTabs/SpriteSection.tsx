@@ -1,8 +1,10 @@
-import { View, Text, Image } from "react-native";
+import { PlaySound } from "@/utils/playSound";
 import { SpriteType } from "@/definition";
-import icons from "@/constants/icons";
+import { View, Text, Image, Pressable } from "react-native";
 
-const SpriteSection = ({ name, spriteUri }: SpriteType) => {
+import icons from "@/constants/ICONS";
+
+const SpriteSection = ({ name, spriteUri, cries }: SpriteType) => {
   return (
     <View className="mb-3 mt-6">
       <View className="relative">
@@ -12,13 +14,15 @@ const SpriteSection = ({ name, spriteUri }: SpriteType) => {
           resizeMode="contain"
           style={{ opacity: 0.25 }}
         />
-        <Image
-          source={{
-            uri: spriteUri,
-          }}
-          className="w-full h-56"
-          resizeMode="contain"
-        />
+        <Pressable onPress={() => PlaySound({ uriSound: cries })}>
+          <Image
+            source={{
+              uri: spriteUri,
+            }}
+            className="w-full h-56"
+            resizeMode="contain"
+          />
+        </Pressable>
       </View>
       <Text className="text-center font-mExtrabold text-xl capitalize text-biskay mt-5">
         {name}

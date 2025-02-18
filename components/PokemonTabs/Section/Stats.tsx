@@ -1,5 +1,5 @@
-import { PokemonDetailsAPI } from "@/definition";
 import { getColorStats } from "@/utils/getColorStat";
+import { PokemonDetailsAPI } from "@/definition";
 import { refactorStats } from "@/utils/refactorStats";
 import { View, Text } from "react-native";
 

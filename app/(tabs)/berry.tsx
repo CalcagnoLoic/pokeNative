@@ -1,7 +1,8 @@
-import Background from "@/components/Background";
-import icons from "@/constants/icons";
-import { View, Text,  StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, StatusBar } from "react-native";
+
+import Background from "@/components/Background";
+import icons from "@/constants/ICONS";
 
 const Berry = () => {
   return (
@@ -12,8 +13,6 @@ const Berry = () => {
           <Text className="font-mExtrabold text-lg self-center text-riverBed">
             PokeNative
           </Text>
-
-
         </View>
       </View>
       <StatusBar backgroundColor="#F0F4FF" barStyle={"dark-content"} />

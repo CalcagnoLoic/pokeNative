@@ -1,4 +1,7 @@
+import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
+import { groupByGeneration } from "@/utils/groupBy";
 import React, { useState, useCallback } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   Text,
@@ -7,15 +10,13 @@ import {
   FlatList,
   StatusBar,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { groupByGeneration } from "@/utils/groupBy";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
-import icons from "@/constants/icons";
-import LoadingState from "@/components/LoadingState";
-import EmptyState from "@/components/EmptyState";
-import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
-import RenderSection from "@/components/PokemonTabs/RenderSection";
+
 import Background from "@/components/Background";
+import EmptyState from "@/components/EmptyState";
+import icons from "@/constants/ICONS";
+import LoadingState from "@/components/LoadingState";
+import RenderSection from "@/components/PokemonTabs/RenderSection";
 
 const Pokemon = () => {
   const { data, isLoading, error } = useGetAllPokemons();

@@ -1,10 +1,10 @@
-import Background from "@/components/Background";
-import Header from "@/components/Header";
-import SearchInput from "@/components/SearchInput";
-import icons from "@/constants/icons";
 import { useState } from "react";
-import { View, Text, ScrollView, StatusBar } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import Background from "@/components/Background";
+import icons from "@/constants/ICONS";
+import SearchInput from "@/components/SearchInput";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
