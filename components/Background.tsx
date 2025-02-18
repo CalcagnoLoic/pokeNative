@@ -3,7 +3,6 @@ import { View, Image, ImageSourcePropType } from "react-native";
 const Background = ({
   img,
   otherStyle,
-
 }: {
   img: ImageSourcePropType;
   otherStyle?: string;
@@ -14,7 +13,7 @@ const Background = ({
         source={img}
         resizeMode="contain"
         className={`w-72 h-72 mt-8 opacity-25 ${otherStyle}`}
-        style={{opacity: 0.3}}
+        style={{ opacity: 0.3 }}
       />
     </View>
   );

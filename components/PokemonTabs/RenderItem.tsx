@@ -1,8 +1,9 @@
-import { typeColor } from "@/utils/typeColor";
+import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { TouchableOpacity, Image, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import icons from "@/constants/icons";
+import { typeColor } from "@/utils/typeColor";
+
+import icons from "@/constants/ICONS";
 
 const RenderItem = ({ item }: { item: any }) => (
   <TouchableOpacity

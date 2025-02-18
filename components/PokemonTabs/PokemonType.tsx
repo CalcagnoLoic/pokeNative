@@ -1,7 +1,9 @@
-import typeIcons from "@/constants/typeIcons";
+import { View, Text, Image } from "react-native";
 import { Types } from "@/definition";
 import { typeColor } from "@/utils/typeColor";
-import { View, Text, Image } from "react-native";
+
+import typeIcons from "@/constants/TYPESICONS";
+
 
 const PokemonType = ({ types }: Types) => {
   return (
@@ -28,9 +30,7 @@ const PokemonType = ({ types }: Types) => {
             />
             <Text
               className={`capitalize ${
-                typeName === "electric"
-                  ? "text-midGray"
-                  : "text-white"
+                typeName === "electric" ? "text-midGray" : "text-white"
               }`}
             >
               {typeName}

@@ -382,15 +382,16 @@ export type Input = {
 export type SpriteType = {
   name: string;
   spriteUri: string;
+  cries: string
 };
 
 export type OtherSprite = {
   title: string;
   sprite1: string;
   sprite2: string;
-  label1: string;
-  label2: string;
-  types: TypesPokemon[];
+  label1?: ImageSourcePropType;
+  label2: ImageSourcePropType;
+
 };
 
 export type Types = {

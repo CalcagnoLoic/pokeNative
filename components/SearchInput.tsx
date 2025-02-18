@@ -1,6 +1,7 @@
-import icons from "@/constants/icons";
 import { Input } from "@/definition";
 import { View, TextInput, TouchableOpacity, Image } from "react-native";
+
+import icons from "@/constants/ICONS";
 
 const SearchInput = ({ initialQuery, onChangeText }: Input) => {
   return (

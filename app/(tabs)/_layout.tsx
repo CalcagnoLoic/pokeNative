@@ -1,18 +1,20 @@
-import TabsIcon from "@/components/TabsIcon";
-import icons from "@/constants/icons";
 import { Tabs } from "expo-router";
+
+import icons from "@/constants/ICONS";
+import TabsIcon from "@/components/TabsIcon";
+import COLORS from "@/constants/COLORS";
 
 const Layout = () => {
   return (
     <Tabs
-     initialRouteName="pokemon"
+      initialRouteName="pokemon"
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#FFCB05",
-        tabBarInactiveTintColor: "#DCDBEB",
+        tabBarActiveTintColor: COLORS.tabBarActiveTintColor,
+        tabBarInactiveTintColor: COLORS.tabBarInactiveTintColor,
         tabBarStyle: {
-          backgroundColor: "#1B2C5E",
-          borderTopColor: "#DCDBEB",
+          backgroundColor: COLORS.backgroundColor,
+          borderTopColor: COLORS.borderTopColor,
           borderTopWidth: 1,
           height: 75,
         },
