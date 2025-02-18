@@ -10,7 +10,7 @@ const PokemonType = ({ types }: Types) => {
         const typeName = type.type.name as keyof typeof typeIcons;
 
         if (!typeIcons[typeName]) {
-          return null; 
+          return null;
         }
 
         return (
@@ -19,22 +19,27 @@ const PokemonType = ({ types }: Types) => {
             style={{
               backgroundColor: typeColor(typeName),
             }}
-            className={`px-6 py-3 flex-row items-center justify-center rounded-xl border ${
-              typeName === "electric" ? "text-midGray" : "text-periglacialBlue"
-            }`}
+            className={`px-6 py-3 flex-row items-center justify-center rounded-xl `}
           >
             <Image
               source={typeIcons[typeName]}
               className="w-5 h-5 mr-2"
               resizeMode="contain"
             />
-            <Text className="capitalize">{typeName}</Text>
+            <Text
+              className={`capitalize ${
+                typeName === "electric"
+                  ? "text-midGray"
+                  : "text-white"
+              }`}
+            >
+              {typeName}
+            </Text>
           </View>
         );
       })}
     </View>
   );
 };
-
 
 export default PokemonType;

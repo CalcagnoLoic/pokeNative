@@ -15,7 +15,6 @@ import LoadingState from "@/components/LoadingState";
 import EmptyState from "@/components/EmptyState";
 import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
 import RenderSection from "@/components/PokemonTabs/RenderSection";
-import TextBox from "@/components/TextBox";
 import Background from "@/components/Background";
 
 const Pokemon = () => {
@@ -102,10 +101,9 @@ const Pokemon = () => {
               className="w-1/2 block mx-auto"
               onPress={toggleClear}
             >
-              <TextBox
-                title="Clear All"
-                style="border bg-macaroniAndCheese text-biskay"
-              />
+              <Text className="border bg-macaroniAndCheese text-biskay p-3 font-mExtrabold rounded-3xl text-center mb-3">
+                Clear All
+              </Text>
             </TouchableOpacity>
           </View>
         )}

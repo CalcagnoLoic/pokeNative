@@ -371,6 +371,7 @@ export type EvolutionDetail = {
   location: string;
   needsRain: boolean;
   knownMove: string;
+  flavorText: string;
 };
 
 export type Input = {
@@ -389,14 +390,20 @@ export type OtherSprite = {
   sprite2: string;
   label1: string;
   label2: string;
+  types: TypesPokemon[];
 };
 
 export type Types = {
-  types: TypesPokemon[]
-}
+  types: TypesPokemon[];
+};
 
 export type RenderingSectionPokemons = {
   section: any;
   visibleSections: string[];
   toggleVisibility: (newValue: string) => void;
+};
+
+export type renderingContent = {
+  state: string;
+  data: PokemonDetailsAPI;
 };

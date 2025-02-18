@@ -2,9 +2,10 @@ import TabsIcon from "@/components/TabsIcon";
 import icons from "@/constants/icons";
 import { Tabs } from "expo-router";
 
-const TabsLayout = () => {
+const Layout = () => {
   return (
     <Tabs
+     initialRouteName="pokemon"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#FFCB05",
@@ -48,7 +49,7 @@ const TabsLayout = () => {
             />
           ),
         }}
-      />{" "}
+      />
       <Tabs.Screen
         name="items"
         options={{
@@ -85,4 +86,4 @@ const TabsLayout = () => {
   );
 };
 
-export default TabsLayout;
+export default Layout;

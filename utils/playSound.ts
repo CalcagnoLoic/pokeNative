@@ -7,7 +7,7 @@ export const PlaySound = async ({ uriSound }: { uriSound?: string }) => {
     return;
   }
 
-  const { sound } = await Audio.Sound.createAsync({ uri: uriSound });
+  const { sound } = await Audio.Sound.createAsync({ uri: uriSound as string });
 
   try {
     await sound.playAsync();
