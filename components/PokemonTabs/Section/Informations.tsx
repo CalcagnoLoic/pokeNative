@@ -3,7 +3,7 @@ import { PokemonDetailsAPI } from "@/definition";
 import { useEffect, useState } from "react";
 
 import icons from "@/constants/ICONS";
-import TextBox from "@/components/TextBox";
+import TextBox from "@/components/ui/TextBox";
 
 const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
   const isElectricType = data.types.some(

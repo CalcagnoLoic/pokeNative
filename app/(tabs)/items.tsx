@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StatusBar } from "react-native";
 
-import Background from "@/components/Background";
+import Background from "@/components/ui/Background";
 import icons from "@/constants/ICONS";
 
 const Items = () => {
