@@ -4,7 +4,6 @@ import { typeColor } from "@/utils/typeColor";
 
 import typeIcons from "@/constants/TYPESICONS";
 
-
 const PokemonType = ({ types }: Types) => {
   return (
     <View className="gap-5 flex-row mx-auto">

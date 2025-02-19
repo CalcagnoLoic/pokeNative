@@ -382,7 +382,7 @@ export type Input = {
 export type SpriteType = {
   name: string;
   spriteUri: string;
-  cries: string
+  cries: string;
 };
 
 export type OtherSprite = {
@@ -391,7 +391,6 @@ export type OtherSprite = {
   sprite2: string;
   label1?: ImageSourcePropType;
   label2: ImageSourcePropType;
-
 };
 
 export type Types = {
@@ -407,4 +406,24 @@ export type RenderingSectionPokemons = {
 export type renderingContent = {
   state: string;
   data: PokemonDetailsAPI;
+};
+
+export type Filter = {
+  data: { name: string; sprite: string }[];
+  queryState: string;
+  selectionState: string[];
+  updateQuery: (newValue: string) => void;
+  updateSelection: (newValue: string) => void;
+  clearData: () => void;
+};
+
+export type Refresh = {
+  setRefreshing: (state: boolean) => void;
+  toggleClear: () => void;
+  setIsOpenFilter: (state: boolean) => void;
+};
+
+export type FilteringHook = {
+  data: any;
+  setVisibleSections: (state: string[]) => void;
 };

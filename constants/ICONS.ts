@@ -6,8 +6,6 @@ import pokedex from "../assets/icons/pokedex.png";
 import show from "../assets/icons/show.png";
 import hide from "../assets/icons/hide.png";
 import audio from "../assets/icons/audio.png";
-import filter from "../assets/icons/filter.png";
-import closeFilter from "../assets/icons/closeFilter.jpg";
 import ballBackground from "../assets/icons/ballBackground.png";
 import back from "../assets/icons/back.jpg";
 import poids from "../assets/icons/poids.png";
@@ -15,6 +13,10 @@ import taille from "../assets/icons/taille.png";
 import male from "../assets/icons/male.png";
 import female from "../assets/icons/female.png";
 import shiny from "../assets/icons/shiny.png";
+import filterOption from "../assets/icons/filterOption.png";
+import closeFilterOption from "../assets/icons/closeFilterOption.png";
+import pokemonCaptured from "../assets/icons/pokemonCaptured.png";
+import splashscreen from "../assets/icons/splashscreen.png";
 
 export default {
   home,
@@ -25,8 +27,6 @@ export default {
   show,
   hide,
   audio,
-  filter,
-  closeFilter,
   ballBackground,
   back,
   poids,
@@ -34,4 +34,8 @@ export default {
   male,
   female,
   shiny,
+  filterOption,
+  closeFilterOption,
+  pokemonCaptured,
+  splashscreen,
 };

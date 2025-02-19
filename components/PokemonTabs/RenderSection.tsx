@@ -1,7 +1,7 @@
 import { RenderingSectionPokemons } from "@/definition";
 import { TouchableOpacity, View, Text, Image, FlatList } from "react-native";
 
-import icons from "@/constants/ICONS";
+import ICONS from "@/constants/ICONS";
 import RenderItem from "./RenderItem";
 
 const RenderSection = ({
@@ -18,7 +18,7 @@ const RenderSection = ({
             {isVisible ? `Hide ${section.title}` : `Show ${section.title}`}
           </Text>
           <Image
-            source={isVisible ? icons.hide : icons.show}
+            source={isVisible ? ICONS.hide : ICONS.show}
             className="w-5 h-5 self-center"
           />
         </View>

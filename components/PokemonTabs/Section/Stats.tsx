@@ -6,7 +6,7 @@ import { View, Text } from "react-native";
 const Stats = ({ data }: { data: PokemonDetailsAPI }) => {
   const isElectricType =
     data && data.types.some((type) => type.type.name === "electric");
-    
+
   return (
     <View>
       {(() => {
