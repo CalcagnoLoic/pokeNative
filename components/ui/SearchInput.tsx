@@ -1,7 +1,7 @@
 import { Input } from "@/definition";
 import { View, TextInput, TouchableOpacity, Image } from "react-native";
 
-import icons from "@/constants/ICONS";
+import ICONS from "@/constants/ICONS";
 
 const SearchInput = ({ initialQuery, onChangeText }: Input) => {
   return (
@@ -15,7 +15,7 @@ const SearchInput = ({ initialQuery, onChangeText }: Input) => {
 
       <TouchableOpacity>
         <Image
-          source={icons.search}
+          source={ICONS.search}
           className="w-5 h-5"
           resizeMode="contain"
         ></Image>

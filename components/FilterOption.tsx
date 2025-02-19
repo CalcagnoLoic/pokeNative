@@ -1,8 +1,9 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import SearchInput from "./ui/SearchInput";
 import { groupByGeneration } from "@/utils/groupBy";
 import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
 import { Filter } from "@/definition";
+
+import SearchInput from "./ui/SearchInput";
 
 const FilterOption = ({
   data,

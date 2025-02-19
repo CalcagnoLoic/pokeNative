@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 
-import icons from "@/constants/ICONS";
+import ICONS from "@/constants/ICONS";
 import TabsIcon from "@/components/ui/TabsIcon";
 import COLORS from "@/constants/COLORS";
 
@@ -27,7 +27,7 @@ const Layout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.pokemon}
+              icon={ICONS.pokemon}
               color={color}
               title="Pokemon"
               focused={focused}
@@ -43,7 +43,7 @@ const Layout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.berry}
+              icon={ICONS.berry}
               color={color}
               title="Berries"
               focused={focused}
@@ -59,7 +59,7 @@ const Layout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.pokedex}
+              icon={ICONS.pokedex}
               color={color}
               title="Items"
               focused={focused}
@@ -75,7 +75,7 @@ const Layout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={icons.search}
+              icon={ICONS.search}
               color={color}
               title="Search"
               focused={focused}

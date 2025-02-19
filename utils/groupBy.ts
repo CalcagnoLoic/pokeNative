@@ -1,4 +1,6 @@
-export const groupByGeneration = (data: string | any[]) => {
+export const groupByGeneration = (data: any[]) => {
+  if (!Array.isArray(data)) return [];
+
   return [
     {
       title: "Generation 1 (1 - 151)",

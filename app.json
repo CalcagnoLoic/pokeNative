@@ -9,34 +9,37 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icons/splashscreen.png",
+        "backgroundColor": "#F0F4FF"
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icons/pokemonCaptured.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/icons/splashscreen.png",
+        "backgroundColor": "#F0F4FF"
+      },
+      "jsEngine": "hermes"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/icons/pokemonCaptured.png"
+      "favicon": "./assets/icons/splashscreen.png"
+    },
+    "splash": {
+      "image": "./assets/icons/splashscreen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F0F4FF"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/icons/pokemonCaptured.png",
+          "image": "./assets/icons/splashscreen.png",
           "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ],
-      [
-        "expo-av",
-        {
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+          "resizeMode": "contain"
         }
       ]
     ],

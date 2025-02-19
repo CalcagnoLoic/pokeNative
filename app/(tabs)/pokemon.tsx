@@ -1,5 +1,6 @@
-import { groupByGeneration } from "@/utils/groupBy";
 import React, { useState, useCallback } from "react";
+import { refresh } from "@/utils/refresh";
+import { RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
@@ -11,6 +12,7 @@ import {
 } from "react-native";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
 
+import { useFilters } from "@/hooks/useFilters";
 import Background from "@/components/ui/Background";
 import EmptyState from "@/components/EmptyState";
 import FilterOption from "@/components/FilterOption";
@@ -18,24 +20,24 @@ import icons from "@/constants/ICONS";
 import LoadingState from "@/components/LoadingState";
 import RenderSection from "@/components/PokemonTabs/RenderSection";
 import NotFoundFilter from "@/components/NotFoundFilter";
-import { RefreshControl } from "react-native";
 
 const Pokemon = () => {
   const { data, isLoading, error } = useGetAllPokemons();
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
   const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const {
+    selected,
+    searchQuery,
+    setSearchQuery,
+    toggleSelection,
+    toggleClear,
+    researchedSectionPokemon,
+  } = useFilters({ data, setVisibleSections });
 
   const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-      toggleClear();
-      setIsOpenFilter(false);
-    }, 1000);
-  }, []);
+    refresh({ setRefreshing, toggleClear, setIsOpenFilter });
+  }, [setRefreshing, toggleClear, setIsOpenFilter]);
 
   const toggleVisibility = useCallback((sectionTitle: string) => {
     setVisibleSections((prevState) =>
@@ -45,39 +47,9 @@ const Pokemon = () => {
     );
   }, []);
 
-  const toggleClear = () => {
-    setSelected([]);
-    setVisibleSections([]);
-    setSearchQuery("");
-  };
-
   const toogleView = () => {
     setIsOpenFilter((prevValue) => !prevValue);
   };
-
-  const toggleSelection = (generationTitle: string) => {
-    setSelected(
-      (prevState) =>
-        prevState.includes(generationTitle)
-          ? prevState.filter((title) => title !== generationTitle) // Désélectionner
-          : [...prevState, generationTitle], // Sélectionner
-    );
-  };
-
-  const filteredSection = selected.length
-    ? groupByGeneration(data).filter((section) =>
-        selected.includes(section.title),
-      )
-    : groupByGeneration(data);
-
-  const researchedSection = filteredSection
-    .map((section) => ({
-      ...section,
-      data: section.data.filter((pokemon: any) =>
-        pokemon.name.toLowerCase().includes(searchQuery.toLocaleLowerCase()),
-      ),
-    }))
-    .filter((section) => section.data.length > 0);
 
   if (isLoading) return <LoadingState />;
 
@@ -130,7 +102,7 @@ const Pokemon = () => {
       </View>
 
       <FlatList
-        data={researchedSection}
+        data={researchedSectionPokemon}
         keyExtractor={(section) => section.title}
         renderItem={({ item }) => (
           <RenderSection

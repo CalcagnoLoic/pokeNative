@@ -15,6 +15,8 @@ import female from "../assets/icons/female.png";
 import shiny from "../assets/icons/shiny.png";
 import filterOption from "../assets/icons/filterOption.png";
 import closeFilterOption from "../assets/icons/closeFilterOption.png";
+import pokemonCaptured from "../assets/icons/pokemonCaptured.png";
+import splashscreen from "../assets/icons/splashscreen.png";
 
 export default {
   home,
@@ -34,4 +36,6 @@ export default {
   shiny,
   filterOption,
   closeFilterOption,
+  pokemonCaptured,
+  splashscreen,
 };

@@ -416,3 +416,14 @@ export type Filter = {
   updateSelection: (newValue: string) => void;
   clearData: () => void;
 };
+
+export type Refresh = {
+  setRefreshing: (state: boolean) => void;
+  toggleClear: () => void;
+  setIsOpenFilter: (state: boolean) => void;
+};
+
+export type FilteringHook = {
+  data: any;
+  setVisibleSections: (state: string[]) => void;
+};
