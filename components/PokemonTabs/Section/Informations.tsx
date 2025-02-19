@@ -2,8 +2,8 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { PokemonDetailsAPI } from "@/definition";
 import { useEffect, useState } from "react";
 
-import icons from "@/constants/ICONS";
-import TextBox from "@/components/TextBox";
+import ICONS from "@/constants/ICONS";
+import TextBox from "@/components/ui/TextBox";
 
 const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
   const isElectricType = data.types.some(
@@ -40,7 +40,7 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
       >
         <View>
           <Image
-            source={icons.poids}
+            source={ICONS.poids}
             className="w-20 h-20"
             resizeMode="contain"
             style={{ tintColor: "white" }}
@@ -51,7 +51,7 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
         </View>
         <View>
           <Image
-            source={icons.taille}
+            source={ICONS.taille}
             className="w-20 h-20"
             resizeMode="contain"
             style={{ tintColor: "white" }}

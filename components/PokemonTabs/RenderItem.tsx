@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { TouchableOpacity, Image, Text, View } from "react-native";
 import { typeColor } from "@/utils/typeColor";
 
-import icons from "@/constants/ICONS";
+import ICONS from "@/constants/ICONS";
 
 const RenderItem = ({ item }: { item: any }) => (
   <TouchableOpacity
@@ -26,7 +26,7 @@ const RenderItem = ({ item }: { item: any }) => (
     >
       <View className="relative">
         <Image
-          source={icons.ballBackground}
+          source={ICONS.ballBackground}
           className="w-14 h-14 -translate-x-[50%] -translate-y-[50%] absolute top-[50%] left-[50%]"
           resizeMode="contain"
         />

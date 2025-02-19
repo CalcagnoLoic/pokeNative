@@ -1,7 +1,7 @@
 import { OtherSprite } from "@/definition";
 import { View, Image } from "react-native";
 
-import TextBox from "../TextBox";
+import TextBox from "../ui/TextBox";
 
 const OtherSpritesSection = ({
   title,
@@ -11,7 +11,10 @@ const OtherSpritesSection = ({
   label2,
 }: OtherSprite) => {
   return (
-    <View className="rounded-3xl" style={{backgroundColor: "rgba(0,0,0,0.55)"}}>
+    <View
+      className="rounded-3xl"
+      style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
+    >
       <TextBox title={title} />
 
       <View className="flex flex-row justify-around">

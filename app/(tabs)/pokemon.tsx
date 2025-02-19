@@ -1,28 +1,43 @@
-import { convertIntoGeneration } from "@/utils/convertIntoGeneration";
-import { groupByGeneration } from "@/utils/groupBy";
 import React, { useState, useCallback } from "react";
+import { refresh } from "@/utils/refresh";
+import { RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   FlatList,
   StatusBar,
+  Pressable,
 } from "react-native";
 import { useGetAllPokemons } from "@/hooks/useGetAllPokemons";
 
-import Background from "@/components/Background";
+import { useFilters } from "@/hooks/useFilters";
+import Background from "@/components/ui/Background";
 import EmptyState from "@/components/EmptyState";
+import FilterOption from "@/components/FilterOption";
 import icons from "@/constants/ICONS";
 import LoadingState from "@/components/LoadingState";
 import RenderSection from "@/components/PokemonTabs/RenderSection";
+import NotFoundFilter from "@/components/NotFoundFilter";
 
 const Pokemon = () => {
   const { data, isLoading, error } = useGetAllPokemons();
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-  const [isFiltering, setIsFiltering] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [isOpenFilter, setIsOpenFilter] = useState<boolean>(false);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const {
+    selected,
+    searchQuery,
+    setSearchQuery,
+    toggleSelection,
+    toggleClear,
+    researchedSectionPokemon,
+  } = useFilters({ data, setVisibleSections });
+
+  const onRefresh = React.useCallback(() => {
+    refresh({ setRefreshing, toggleClear, setIsOpenFilter });
+  }, [setRefreshing, toggleClear, setIsOpenFilter]);
 
   const toggleVisibility = useCallback((sectionTitle: string) => {
     setVisibleSections((prevState) =>
@@ -32,29 +47,9 @@ const Pokemon = () => {
     );
   }, []);
 
-  const toggleClear = () => {
-    setSelected([]);
-    setVisibleSections([]);
+  const toogleView = () => {
+    setIsOpenFilter((prevValue) => !prevValue);
   };
-
-  const toggleFiltering = () => {
-    setIsFiltering((prevValue) => !prevValue);
-  };
-
-  const toggleSelection = (generationTitle: string) => {
-    setSelected(
-      (prevState) =>
-        prevState.includes(generationTitle)
-          ? prevState.filter((title) => title !== generationTitle) // Désélectionner
-          : [...prevState, generationTitle], // Sélectionner
-    );
-  };
-
-  const filteredSection = selected.length
-    ? groupByGeneration(data).filter((section) =>
-        selected.includes(section.title),
-      )
-    : groupByGeneration(data);
 
   if (isLoading) return <LoadingState />;
 
@@ -65,53 +60,49 @@ const Pokemon = () => {
       <Background img={icons.pokemon} />
 
       <View className="border-b relative z-10 bg-zircon">
-        <View className="px-8 pt-4 flex justify-between flex-row mb-4">
-          <Text className="font-mExtrabold text-lg self-center text-riverBed">
-            PokeNative
-          </Text>
-          <TouchableOpacity onPress={toggleFiltering}>
-            <Image
-              source={isFiltering ? icons.closeFilter : icons.filter}
-              className="w-10 h-10"
-              resizeMode="contain"
+        <View className="px-8 pt-4 flex justify-between flex-col mb-4">
+          <View className="flex flex-row justify-between">
+            <Text className="font-mExtrabold text-lg self-center text-riverBed">
+              PokeNative
+            </Text>
+
+            <View className="flex flex-row gap-5 items-center">
+              <Pressable onPress={toogleView}>
+                <Image
+                  source={icons.filterOption}
+                  className="w-10 h-10"
+                  resizeMode="contain"
+                />
+              </Pressable>
+              {isOpenFilter && (
+                <Pressable onPress={() => setIsOpenFilter(false)}>
+                  <Image
+                    source={icons.closeFilterOption}
+                    className="w-8 h-8"
+                    resizeMode="contain"
+                    style={{ tintColor: "#D9303C" }}
+                  />
+                </Pressable>
+              )}
+            </View>
+          </View>
+
+          {isOpenFilter && (
+            <FilterOption
+              data={data}
+              queryState={searchQuery}
+              selectionState={selected}
+              updateQuery={setSearchQuery}
+              updateSelection={toggleSelection}
+              clearData={toggleClear}
             />
-          </TouchableOpacity>
+          )}
           <StatusBar backgroundColor="#F0F4FF" barStyle={"dark-content"} />
         </View>
-
-        {isFiltering && (
-          <View className="px-8 relative z-20">
-            <View className="flex flex-row flex-wrap justify-center gap-5 mb-5 px-8">
-              {groupByGeneration(data).map((title) => (
-                <TouchableOpacity
-                  key={title.title}
-                  onPress={() => toggleSelection(title.title)}
-                  className={`p-2 rounded-full shadow-lg font-rBoldi shadow-black border text-biskay border-riverBed ${
-                    selected.includes(title.title)
-                      ? "bg-macaroniAndCheese "
-                      : "bg-geyser"
-                  }`}
-                >
-                  <Text className={`font-rBoldi text-biskay`}>
-                    {convertIntoGeneration(title.title)}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-            <TouchableOpacity
-              className="w-1/2 block mx-auto"
-              onPress={toggleClear}
-            >
-              <Text className="border bg-macaroniAndCheese text-biskay p-3 font-mExtrabold rounded-3xl text-center mb-3">
-                Clear All
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
       </View>
 
       <FlatList
-        data={filteredSection}
+        data={researchedSectionPokemon}
         keyExtractor={(section) => section.title}
         renderItem={({ item }) => (
           <RenderSection
@@ -120,7 +111,10 @@ const Pokemon = () => {
             toggleVisibility={toggleVisibility}
           />
         )}
-        ListEmptyComponent={<EmptyState error={error} />}
+        ListEmptyComponent={<NotFoundFilter />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </SafeAreaView>
   );

@@ -3,7 +3,7 @@ import { PokemonDetailsAPI } from "@/definition";
 import { router } from "expo-router";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
-import icons from "@/constants/ICONS";
+import ICONS from "@/constants/ICONS";
 
 const EvolutionChain = ({ data }: { data: PokemonDetailsAPI }) => {
   return (
@@ -22,7 +22,7 @@ const EvolutionChain = ({ data }: { data: PokemonDetailsAPI }) => {
             >
               <View>
                 <Image
-                  source={icons.ballBackground}
+                  source={ICONS.ballBackground}
                   className="w-16 h-16 absolute top-[45%] left-[38%] -translate-x-[45%] -translate-y-[40%] "
                   resizeMode="contain"
                 />
