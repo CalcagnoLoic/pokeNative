@@ -22,6 +22,11 @@ const SpriteSection = ({ name, spriteUri, cries }: SpriteType) => {
             className="w-full h-56"
             resizeMode="contain"
           />
+          <Image
+            source={ICONS.audio}
+            className="absolute w-10 h-10 bottom-0 right-0"
+            resizeMode="contain"
+          />
         </Pressable>
       </View>
       <Text className="text-center font-mExtrabold text-xl capitalize text-biskay mt-5">

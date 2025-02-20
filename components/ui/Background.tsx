@@ -12,7 +12,7 @@ const Background = ({
       <Image
         source={img}
         resizeMode="contain"
-        className={`w-72 h-72 mt-8 opacity-25 ${otherStyle}`}
+        className={`w-72 h-72 mt-8 opacity-25 grayscale ${otherStyle}`}
         style={{ opacity: 0.3 }}
       />
     </View>
