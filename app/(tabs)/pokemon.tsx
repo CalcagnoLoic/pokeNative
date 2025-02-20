@@ -57,7 +57,7 @@ const Pokemon = () => {
 
   return (
     <SafeAreaView className="bg-zircon h-full">
-      <Background img={icons.pokemon} />
+      <Background img={icons.pokemonCaptured} />
 
       <View className="border-b relative z-10 bg-zircon">
         <View className="px-8 pt-4 flex justify-between flex-col mb-4">

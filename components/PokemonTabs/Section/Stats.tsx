@@ -25,7 +25,7 @@ const Stats = ({ data }: { data: PokemonDetailsAPI }) => {
           }
 
           return (
-            <View>
+            <View key={stat.stat.name}>
               <Text
                 className={`font-mBold text-center text-lg mb-2 mt-5 ${isElectricType ? "text-midGray" : "text-white"}`}
               >

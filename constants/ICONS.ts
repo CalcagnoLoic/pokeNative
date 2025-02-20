@@ -5,7 +5,6 @@ import pokemon from "../assets/icons/pokemon.png";
 import pokedex from "../assets/icons/pokedex.png";
 import show from "../assets/icons/show.png";
 import hide from "../assets/icons/hide.png";
-import audio from "../assets/icons/audio.png";
 import ballBackground from "../assets/icons/ballBackground.png";
 import back from "../assets/icons/back.jpg";
 import poids from "../assets/icons/poids.png";
@@ -17,6 +16,8 @@ import filterOption from "../assets/icons/filterOption.png";
 import closeFilterOption from "../assets/icons/closeFilterOption.png";
 import pokemonCaptured from "../assets/icons/pokemonCaptured.png";
 import splashscreen from "../assets/icons/splashscreen.png";
+import audio from "../assets/icons/audio.png";
+import tm from "../assets/icons/tm.png";
 
 export default {
   home,
@@ -38,4 +39,5 @@ export default {
   closeFilterOption,
   pokemonCaptured,
   splashscreen,
+  tm,
 };

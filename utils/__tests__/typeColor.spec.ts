@@ -1,4 +1,4 @@
-import { typeColor } from "./typeColor";
+import { typeColor } from "../typeColor";
 import { describe, test, expect } from "@jest/globals";
 
 describe("Unit Test Suite typeColor", () => {

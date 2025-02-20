@@ -1,4 +1,4 @@
-import { getColorStats } from "./getColorStat";
+import { getColorStats } from "../getColorStat";
 import { describe, test, expect } from "@jest/globals";
 
 describe("Unit Test Suite getColorStat", () => {

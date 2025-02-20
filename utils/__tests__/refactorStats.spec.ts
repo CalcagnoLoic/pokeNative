@@ -1,4 +1,4 @@
-import { refactorStats } from "./refactorStats";
+import { refactorStats } from "../refactorStats";
 import { describe, test, expect } from "@jest/globals";
 
 describe("Unit Test Suite refactorStats", () => {

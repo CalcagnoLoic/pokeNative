@@ -1,9 +1,11 @@
+import { capitalizeSentence } from "@/utils/capitalizeSentence";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { PokemonDetailsAPI } from "@/definition";
 import { useEffect, useState } from "react";
 
 import ICONS from "@/constants/ICONS";
 import TextBox from "@/components/ui/TextBox";
+import React from "react";
 
 const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
   const isElectricType = data.types.some(
@@ -30,7 +32,9 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
         className={`text-center px-4 text-lg ${isElectricType ? "text-midGray" : "text-white"}`}
       >
         {data.evolutionDetails?.[0]?.flavorText
-          ? `"${data.evolutionDetails[0].flavorText.replace(/\n/g, " ")}"`
+          ? capitalizeSentence(
+              `${data.evolutionDetails[0].flavorText.replace(/\n/g, " ")}`,
+            )
           : "No flavor text avalaible"}
       </Text>
 
@@ -91,9 +95,9 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
 
         {data.abilitiesDetails &&
           data.abilitiesDetails.map((ability) => (
-            <>
+            <React.Fragment key={ability.effect}>
               {selectedAbility === ability.ability && (
-                <View key={ability.effect} className="mt-4 px-4">
+                <View className="mt-4 px-4">
                   <Text
                     className={`font-rRegular mb-4 ${isElectricType ? "text-midGray" : "text-white"} `}
                   >
@@ -103,7 +107,7 @@ const Informations = ({ data }: { data: PokemonDetailsAPI }) => {
                   </Text>
                 </View>
               )}
-            </>
+            </React.Fragment>
           ))}
       </View>
 

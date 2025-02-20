@@ -1,4 +1,4 @@
-import { getAllPokemons, getPokemonTypesMap } from "@/lib/fetchData";
+import { getAllPokemons, getPokemonTypesMap } from "@/lib/fetchDataPokemon";
 import { useEffect, useState } from "react";
 
 export const useGetAllPokemons = () => {

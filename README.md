@@ -7,52 +7,42 @@
 </p>
 
 <p align="center">
-   <img src="assets/images/readme/pokemonDetails.jpg" width="50%">
+   <video src="https://github.com/user-attachments/assets/0b8cca3c-a804-4744-8888-6ddaf789cbf8" width="25%" controls></video>
 </p>
-
-[TODO]
 
 ## Overview of Pokemon tab
 
-<table align="center">
-   <tr>
-      <th>List of pokemons by region</th>
-      <th>List of pokemons in a region</th>
-      <th>Filter pokemons by region</th>
-   </tr>
-   <tr>
-      <td align="center"><img src="assets/images/readme/pokemonList.jpg" width="50%"></td>
-      <td align="center"><img src="assets/images/readme/list.jpg" width="50%"></td>
-      <td align="center"><img src="assets/images/readme/filter.jpg" width="50%"></td>
-   </tr>
-</table>
+On the pokemon page, users can: 
+- View a list of the 1,025 existing pokemons, sorted by generation
+- Filter your search by generation and name 
+- On the pokemon page, you can
+    - View general information (types, abilities, items held, etc.) and its cry
+    - See the evolution chain with the different ways it can evolve
+    - View basic statistics
+    - View alternative forms (male/female, shiny)
 
-<table align="center">
-   <tr>
-      <th>Informations</th>
-      <th>Evolution Chain</th>
-      <th>Statistics of base</th>
-      <th>Alternative forms</th>
-   </tr>
-   <tr>
-      <td align="center"><img src="assets/images/readme/infos.jpg" width="50%"></td>
-      <td align="center"><img src="assets/images/readme/evolution.jpg" width="50%"></td>
-      <td align="center"><img src="assets/images/readme/stats.jpg" width="50%"></td>
-      <td align="center"><img src="assets/images/readme/form.jpg" width="50%"></td>
-   </tr>
-</table>
 
 ## Overview of Berry tab
 
-[TODO]
+On the page dedicated to berries, users can: 
+- View a list of bays sorted by effect
+- Filter search by effect and name 
+- On the berry page, find general information such as its effect, where to find it, etc.
 
 ## Overview of Items tab
 
-[TODO]
+On the items page, users can: 
+- View a list of items classified by category
+- Filter their search by category and name 
+- On the item page, find general information such as its effect, where to find it, etc.
 
-## Overview of Search tab
 
-[TODO]
+## Overview of Technical Machine (TM) tab
+
+On the page dedicated to technical machines, the user can: 
+- View the list of TMs classified by type
+- Filter their search by type and name 
+- On the TM page, find general information such as effect, type, etc.
 
 ## Technologies
 
