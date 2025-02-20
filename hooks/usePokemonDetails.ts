@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { getDetailsPokemons } from "@/lib/fetchData";
+import { getDetailsPokemons } from "@/lib/fetchDataPokemon";
 import { PokemonDetailsAPI } from "@/definition";
 
 export const usePokemonDetails = ({ id }: { id: string }) => {
@@ -20,7 +20,7 @@ export const usePokemonDetails = ({ id }: { id: string }) => {
         console.log("API call result");
         setData(res);
       } catch (error) {
-        console.log("Captured error:", error); 
+        console.log("Captured error:", error);
         setError(
           error instanceof Error
             ? error.message

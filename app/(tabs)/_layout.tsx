@@ -27,7 +27,7 @@ const Layout = () => {
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={ICONS.pokemon}
+              icon={ICONS.pokemonCaptured}
               color={color}
               title="Pokemon"
               focused={focused}
@@ -69,17 +69,17 @@ const Layout = () => {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="tm"
         options={{
-          title: "Search",
+          title: "tm",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabsIcon
-              icon={ICONS.search}
+              icon={ICONS.tm}
               color={color}
-              title="Search"
+              title="TM"
               focused={focused}
-              iconSize={` ${focused ? "w-8 h-8" : "w-5 h-5"}`}
+              iconSize={` ${focused ? "w-8 h-8 " : "w-5 h-5 "}`}
             />
           ),
         }}
