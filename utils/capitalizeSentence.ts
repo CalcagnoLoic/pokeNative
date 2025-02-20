@@ -1,4 +1,4 @@
-export const capitalizeSentence = (val: string) => {
+export const capitalizeSentence = (val: string): string => {
   const lowercased = val.toLowerCase().trim();
 
   return lowercased.replace(

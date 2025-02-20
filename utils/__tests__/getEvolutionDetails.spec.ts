@@ -1,4 +1,4 @@
-import { getEvolutionDetails } from "./getEvolutionDetails";
+import { getEvolutionDetails } from "../getEvolutionDetails";
 import { describe, test, expect } from "@jest/globals";
 
 describe("Unit Test Suite getEvolutionDetails", () => {
