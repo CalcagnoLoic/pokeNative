@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-   <video src="assets/images/readme/demo.mp4" width="25%" controls></video>
+   <video src="https://github.com/user-attachments/assets/0b8cca3c-a804-4744-8888-6ddaf789cbf8" width="25%" controls></video>
 </p>
 
 ## Overview of Pokemon tab
